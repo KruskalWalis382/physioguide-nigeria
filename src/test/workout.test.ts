@@ -10,7 +10,7 @@ describe("home workout planner", () => {
   it("never schedules training on consecutive days for 2 or 3 days", () => {
     for (const d of [2, 3] as const) {
       const days = buildPlan("beginner", d).days;
-      for (let i = 1; i < 7; i++) expect(!days[i].rest && !days[i - 1].rest).toBe(false);
+      for (let i = 1; i < 7; i++) expect(!days[i]!.rest && !days[i - 1]!.rest).toBe(false);
     }
   });
   it("changing level changes sets", () => {
