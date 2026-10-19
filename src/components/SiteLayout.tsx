@@ -1,16 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 
-const nav = [
+const nav: { to: "/" | "/guides/$slug" | "/checker" | "/movement" | "/faq" | "/contact"; label: string; params?: { slug: string } }[] = [
   { to: "/", label: "Home" },
-  { to: "/guides/low-back-pain", label: "Back pain" },
-  { to: "/guides/knee-pain", label: "Knee pain" },
-  { to: "/guides/neck-pain", label: "Neck pain" },
+  { to: "/guides/$slug", params: { slug: "low-back-pain" }, label: "Back pain" },
+  { to: "/guides/$slug", params: { slug: "knee-pain" }, label: "Knee pain" },
+  { to: "/guides/$slug", params: { slug: "neck-pain" }, label: "Neck pain" },
   { to: "/checker", label: "Safety checker" },
   { to: "/movement", label: "Movement" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
-] as const;
+];
 
 export function Logo() {
   return (
@@ -42,8 +42,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <nav className="hidden lg:block" aria-label="Main">
             <ul className="flex gap-1">
               {nav.map((n) => (
-                <li key={n.to}>
-                  <Link to={n.to} className="rounded-md px-2 py-2 text-sm text-primary-foreground/85 hover:text-primary-foreground" activeProps={{ className: "underline underline-offset-4 text-primary-foreground" }} activeOptions={{ exact: true }}>
+                <li key={n.label}>
+                  <Link to={n.to} params={n.params as never} className="rounded-md px-2 py-2 text-sm text-primary-foreground/85 hover:text-primary-foreground" activeProps={{ className: "underline underline-offset-4 text-primary-foreground" }} activeOptions={{ exact: true }}>
                     {n.label}
                   </Link>
                 </li>
@@ -55,8 +55,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <nav id="main-nav" className="border-t border-primary-foreground/20 lg:hidden" aria-label="Main">
             <ul className="mx-auto max-w-5xl px-2 py-2">
               {nav.map((n) => (
-                <li key={n.to}>
-                  <Link to={n.to} onClick={() => setOpen(false)} className="block rounded-md px-3 py-3 text-primary-foreground" activeProps={{ className: "bg-primary-foreground/10 font-semibold" }} activeOptions={{ exact: true }}>
+                <li key={n.label}>
+                  <Link to={n.to} params={n.params as never} onClick={() => setOpen(false)} className="block rounded-md px-3 py-3 text-primary-foreground" activeProps={{ className: "bg-primary-foreground/10 font-semibold" }} activeOptions={{ exact: true }}>
                     {n.label}
                   </Link>
                 </li>
