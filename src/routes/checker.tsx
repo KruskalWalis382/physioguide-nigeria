@@ -86,7 +86,7 @@ function Checker() {
             <legend className="mb-2 text-xl font-bold text-primary">Where is your main pain?</legend>
             {areas.map((a) => (
               <label key={a.id} className="card flex cursor-pointer items-center gap-3 p-4">
-                <input type="radio" name="area" className="h-5 w-5 accent-accent" checked={area === a.id} onChange={() => { setArea(a.id); setEmergency([]); setConcerns([]); }} />
+                <input type="radio" name="area" className="h-5 w-5 accent-accent" checked={area === a.id} onChange={() => { setArea(a.id); setEmergency([]); setConcerns([]); setNoEmergency(false); setNoConcerns(false); }} />
                 <span>{a.label}</span>
               </label>
             ))}
