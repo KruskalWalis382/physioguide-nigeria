@@ -1,13 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 
-const nav: { to: "/" | "/guides/$slug" | "/checker" | "/movement" | "/faq" | "/contact"; label: string; params?: { slug: string } }[] = [
+const nav: { to: "/" | "/guides/$slug" | "/checker" | "/movement" | "/workout" | "/posture" | "/faq" | "/contact"; label: string; params?: { slug: string } }[] = [
   { to: "/", label: "Home" },
   { to: "/guides/$slug", params: { slug: "low-back-pain" }, label: "Back pain" },
   { to: "/guides/$slug", params: { slug: "knee-pain" }, label: "Knee pain" },
   { to: "/guides/$slug", params: { slug: "neck-pain" }, label: "Neck pain" },
   { to: "/checker", label: "Safety checker" },
   { to: "/movement", label: "Movement" },
+  { to: "/workout", label: "Workout" },
+  { to: "/posture", label: "Habits" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
 ];
