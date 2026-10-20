@@ -11,7 +11,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
-  --font-sans: --font-sans: "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -299,9 +299,6 @@ nav a:hover {
     box-shadow 280ms ease,
     border-color 280ms ease;
 }
-
-}
-
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .card:hover {
     transform: translateY(-5px);
@@ -315,16 +312,12 @@ nav a:hover {
 
   .card:hover img {
     transform: scale(1.035);
-  }
-}
+  }}
 
 .card:focus-within {
   border-color: var(--pg-teal);
   box-shadow: 0 0 0 3px var(--pg-glow);
 }
-
-}
-
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .card:hover {
     transform: translateY(-5px);
