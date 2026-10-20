@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, Disclaimer } from "@/components/SiteLayout";
+import { Picture } from "@/components/Picture";
+import bridge from "@/assets/ex-bridge.jpg";
 
 export const Route = createFileRoute("/movement")({
   head: () => ({
@@ -27,6 +29,7 @@ function Movement() {
   return (
     <SiteLayout>
       <div className="space-y-6">
+        <Picture src={bridge} alt="Person doing a gentle exercise lying on a mat" priority className="rounded-xl" />
         <h1 className="text-3xl">Gentle movement information</h1>
         <p>Staying gently active is often helpful for common muscle and joint pain. Below are a few general, low-risk examples. They are <strong>not</strong> a personal exercise programme and are not based on the safety checker.</p>
         <div className="card space-y-2 border-2 border-destructive bg-danger-soft">
@@ -48,6 +51,7 @@ function Movement() {
         </ol>
         <p className="text-muted-foreground">Mild discomfort can be normal when you start moving again, but it should settle quickly. A physiotherapist can give advice suited to you.</p>
         <Link to="/checker" className="btn btn-accent w-full sm:w-auto">Check warning signs first</Link>
+        <Link to="/workout" className="btn btn-outline w-full sm:w-auto">Try the home workout planner</Link>
         <Disclaimer />
       </div>
     </SiteLayout>
