@@ -48,7 +48,7 @@ function GuidePage() {
   return (
     <SiteLayout>
       <article className="space-y-6">
-        <Picture src={img[g.slug]} alt={`Person with ${g.title.toLowerCase()}`} priority className="rounded-xl" />
+        <Picture src={img[g.slug] ?? back} alt={`Person with ${g.title.toLowerCase()}`} priority className="rounded-xl" />
         <h1 className="text-3xl">{g.title}</h1>
         <p>{g.intro}</p>
         <section className="card space-y-3">

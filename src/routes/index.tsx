@@ -54,7 +54,7 @@ function Index() {
         <div className="grid gap-4 sm:grid-cols-3">
           {guides.map((g) => (
             <Link key={g.slug} to="/guides/$slug" params={{ slug: g.slug }} className="card block overflow-hidden border-t-4 border-t-accent p-0 hover:shadow-md">
-              <Picture src={guideImg[g.slug]} alt={`${g.title} illustration photo`} />
+              <Picture src={guideImg[g.slug] ?? hero} alt={`${g.title} illustration photo`} />
               <div className="p-4">
               <h3 className="text-lg">{g.title}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{g.short}</p>
