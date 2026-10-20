@@ -1,6 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, Disclaimer } from "@/components/SiteLayout";
 import { guides } from "@/lib/guides";
+import { Picture } from "@/components/Picture";
+import hero from "@/assets/hero-physio.jpg";
+import back from "@/assets/guide-back.jpg";
+import knee from "@/assets/guide-knee.jpg";
+import neck from "@/assets/guide-neck.jpg";
+import workoutImg from "@/assets/workout-hero.jpg";
+import deskImg from "@/assets/ergo-desk.jpg";
+
+const guideImg: Record<string, string> = { "low-back-pain": back, "knee-pain": knee, "neck-pain": neck };
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,12 +28,15 @@ export const Route = createFileRoute("/")({
 const extra = [
   { to: "/checker", title: "Safety checker", short: "Check for warning signs that need urgent or professional care." },
   { to: "/movement", title: "Gentle movement", short: "Simple, low-risk movement ideas and when to stop." },
+  { to: "/workout", title: "Home workout planner", short: "Pick your level and days; get a weekly plan with pictures." },
+  { to: "/posture", title: "Everyday habits", short: "Desk, phone, lifting, sleep and healthy Nigerian meals." },
   { to: "/faq", title: "Questions", short: "Answers to common questions about pain and physiotherapy." },
 ] as const;
 
 function Index() {
   return (
     <SiteLayout>
+      <Picture src={hero} alt="A Nigerian physiotherapist helping a patient with a knee exercise" priority className="mb-6 rounded-xl" />
       <section className="space-y-4">
         <p className="text-sm font-semibold uppercase tracking-wide text-accent">Health education for Nigerians</p>
         <h1 className="text-3xl sm:text-4xl">Understand your back, knee and neck pain — and know when to get help</h1>
@@ -41,10 +53,13 @@ function Index() {
         <h2 className="text-2xl">Guides</h2>
         <div className="grid gap-4 sm:grid-cols-3">
           {guides.map((g) => (
-            <Link key={g.slug} to="/guides/$slug" params={{ slug: g.slug }} className="card block border-t-4 border-t-accent hover:shadow-md">
+            <Link key={g.slug} to="/guides/$slug" params={{ slug: g.slug }} className="card block overflow-hidden border-t-4 border-t-accent p-0 hover:shadow-md">
+              <Picture src={guideImg[g.slug] ?? hero} alt={`${g.title} illustration photo`} />
+              <div className="p-4">
               <h3 className="text-lg">{g.title}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{g.short}</p>
               <span className="mt-3 inline-block text-sm font-semibold text-accent">Read guide →</span>
+              </div>
             </Link>
           ))}
         </div>
@@ -52,6 +67,7 @@ function Index() {
 
       <section className="mt-10 space-y-4">
         <h2 className="text-2xl">Tools and information</h2>
+        <div className="grid grid-cols-2 gap-3"><Picture src={workoutImg} alt="Woman exercising at home" className="rounded-lg" /><Picture src={deskImg} alt="Man sitting well at a desk" className="rounded-lg" /></div>
         <div className="grid gap-4 sm:grid-cols-3">
           {extra.map((e) => (
             <Link key={e.to} to={e.to} className="card block hover:shadow-md">

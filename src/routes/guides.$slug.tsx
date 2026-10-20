@@ -1,6 +1,12 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout, Disclaimer } from "@/components/SiteLayout";
 import { getGuide } from "@/lib/guides";
+import { Picture } from "@/components/Picture";
+import back from "@/assets/guide-back.jpg";
+import knee from "@/assets/guide-knee.jpg";
+import neck from "@/assets/guide-neck.jpg";
+
+const img: Record<string, string> = { "low-back-pain": back, "knee-pain": knee, "neck-pain": neck };
 
 export const Route = createFileRoute("/guides/$slug")({
   loader: ({ params }) => {
@@ -42,6 +48,7 @@ function GuidePage() {
   return (
     <SiteLayout>
       <article className="space-y-6">
+        <Picture src={img[g.slug] ?? back} alt={`Person with ${g.title.toLowerCase()}`} priority className="rounded-xl" />
         <h1 className="text-3xl">{g.title}</h1>
         <p>{g.intro}</p>
         <section className="card space-y-3">

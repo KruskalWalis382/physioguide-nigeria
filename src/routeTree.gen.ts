@@ -14,6 +14,8 @@ import { Route as CheckerRouteImport } from './routes/checker'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as MovementRouteImport } from './routes/movement'
+import { Route as PostureRouteImport } from './routes/posture'
+import { Route as WorkoutRouteImport } from './routes/workout'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +43,16 @@ const MovementRoute = MovementRouteImport.update({
   path: '/movement',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PostureRoute = PostureRouteImport.update({
+  id: '/posture',
+  path: '/posture',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkoutRoute = WorkoutRouteImport.update({
+  id: '/workout',
+  path: '/workout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuidesSlugRoute = GuidesSlugRouteImport.update({
   id: '/guides/$slug',
   path: '/guides/$slug',
@@ -53,6 +65,8 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/movement': typeof MovementRoute
+  '/posture': typeof PostureRoute
+  '/workout': typeof WorkoutRoute
   '/guides/$slug': typeof GuidesSlugRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +75,8 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/movement': typeof MovementRoute
+  '/posture': typeof PostureRoute
+  '/workout': typeof WorkoutRoute
   '/guides/$slug': typeof GuidesSlugRoute
 }
 export interface FileRoutesById {
@@ -70,14 +86,31 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/movement': typeof MovementRoute
+  '/posture': typeof PostureRoute
+  '/workout': typeof WorkoutRoute
   '/guides/$slug': typeof GuidesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/checker' | '/contact' | '/faq' | '/movement' | '/guides/$slug'
+    | '/'
+    | '/checker'
+    | '/contact'
+    | '/faq'
+    | '/movement'
+    | '/posture'
+    | '/workout'
+    | '/guides/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/checker' | '/contact' | '/faq' | '/movement' | '/guides/$slug'
+  to:
+    | '/'
+    | '/checker'
+    | '/contact'
+    | '/faq'
+    | '/movement'
+    | '/posture'
+    | '/workout'
+    | '/guides/$slug'
   id:
     | '__root__'
     | '/'
@@ -85,6 +118,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/faq'
     | '/movement'
+    | '/posture'
+    | '/workout'
     | '/guides/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -94,6 +129,8 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   MovementRoute: typeof MovementRoute
+  PostureRoute: typeof PostureRoute
+  WorkoutRoute: typeof WorkoutRoute
   GuidesSlugRoute: typeof GuidesSlugRoute
 }
 
@@ -134,6 +171,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MovementRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/posture': {
+      id: '/posture'
+      path: '/posture'
+      fullPath: '/posture'
+      preLoaderRoute: typeof PostureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workout': {
+      id: '/workout'
+      path: '/workout'
+      fullPath: '/workout'
+      preLoaderRoute: typeof WorkoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guides/$slug': {
       id: '/guides/$slug'
       path: '/guides/$slug'
@@ -150,6 +201,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   MovementRoute: MovementRoute,
+  PostureRoute: PostureRoute,
+  WorkoutRoute: WorkoutRoute,
   GuidesSlugRoute: GuidesSlugRoute,
 }
 export const routeTree = rootRouteImport
