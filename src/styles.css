@@ -285,17 +285,42 @@ nav a:hover {
   backdrop-filter: blur(18px);
   box-shadow: 0 8px 32px rgba(20, 43, 74, 0.07);
 }
-
-/* Refined cards */
+/* Refined cards with modern interactions */
 .card {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   border: 1px solid rgba(20, 43, 74, 0.09);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 5px 20px rgba(20, 43, 74, 0.045);
   transition:
-    transform 260ms cubic-bezier(.2, .8, .2, 1),
-    box-shadow 260ms ease,
-    border-color 260ms ease;
+    transform 280ms cubic-bezier(.2, .8, .2, 1),
+    box-shadow 280ms ease,
+    border-color 280ms ease;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(8, 127, 140, 0.4);
+    box-shadow: 0 16px 36px rgba(20, 43, 74, 0.12);
+  }
+
+  .card img {
+    transition: transform 400ms ease;
+  }
+
+  .card:hover img {
+    transform: scale(1.035);
+  }
+}
+
+.card:focus-within {
+  border-color: var(--pg-teal);
+  box-shadow: 0 0 0 3px var(--pg-glow);
+}
+
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
