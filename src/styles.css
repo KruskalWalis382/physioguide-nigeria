@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -10,7 +11,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  --font-sans: --font-sans: "Inter", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -218,5 +219,188 @@ a {
 
   .card {
     padding: 1rem;
+  }
+}
+
+/* ==========================================
+   PHYSIOGUIDE NIGERIA — MODERN DESIGN SYSTEM
+   ========================================== */
+
+:root {
+  --pg-navy: #142b4a;
+  --pg-teal: #087f8c;
+  --pg-glow: rgba(8, 127, 140, 0.15);
+  --pg-glass: rgba(255, 255, 255, 0.76);
+}
+
+/* Typography */
+body {
+  font-family: "Inter", sans-serif;
+  background:
+    radial-gradient(ellipse at 5% 0%, rgba(8, 127, 140, 0.07), transparent 36%),
+    radial-gradient(ellipse at 100% 30%, rgba(56, 125, 190, 0.06), transparent 32%),
+    var(--color-background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+h1 {
+  letter-spacing: -0.045em;
+}
+
+h2 {
+  letter-spacing: -0.03em;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+/* Modern glass navigation */
+nav {
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+nav a {
+  transition: color 200ms ease, background-color 200ms ease;
+}
+
+nav a:hover {
+  color: var(--pg-teal);
+}
+
+/* Glass surfaces */
+.glass,
+[data-glass="true"] {
+  background: var(--pg-glass);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 8px 32px rgba(20, 43, 74, 0.07);
+}
+
+/* Refined cards */
+.card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(20, 43, 74, 0.09);
+  box-shadow: 0 5px 20px rgba(20, 43, 74, 0.045);
+  transition:
+    transform 260ms cubic-bezier(.2, .8, .2, 1),
+    box-shadow 260ms ease,
+    border-color 260ms ease;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(8, 127, 140, 0.35);
+    box-shadow: 0 16px 36px rgba(20, 43, 74, 0.11);
+  }
+
+  .card img {
+    transition: transform 400ms ease;
+  }
+
+  .card:hover img {
+    transform: scale(1.035);
+  }
+}
+
+/* Buttons with a polished response */
+.btn,
+button {
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+@media (hover: hover) {
+  .btn-primary:hover,
+  .btn-accent:hover {
+    box-shadow: 0 8px 22px var(--pg-glow);
+  }
+
+  button:hover {
+    border-color: rgba(8, 127, 140, 0.35);
+  }
+}
+
+.btn:active,
+button:active {
+  transform: scale(0.98);
+}
+
+/* Images */
+img {
+  border-radius: inherit;
+}
+
+/* Accessible keyboard focus */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--pg-teal);
+  outline-offset: 4px;
+}
+
+/* Optional entrance animation.
+   Apply class="pg-enter" to selected sections. */
+@keyframes pg-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pg-enter {
+  animation: pg-enter 650ms cubic-bezier(.2, .7, .2, 1) both;
+}
+
+/* Gentle floating accent for decorative elements */
+@keyframes pg-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.pg-float {
+  animation: pg-float 5s ease-in-out infinite;
+}
+
+/* Mobile refinements */
+@media (max-width: 640px) {
+  h1 {
+    letter-spacing: -0.035em;
+  }
+
+  .card {
+    border-radius: 1rem;
+  }
+}
+
+/* Respect visitors who prefer less animation */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
