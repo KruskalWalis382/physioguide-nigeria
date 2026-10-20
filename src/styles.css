@@ -98,3 +98,125 @@
 @utility btn-outline {
   border: 2px solid var(--color-primary); color: var(--color-primary); background: transparent;
 }
+
+/* ========================================
+   PhysioGuide Nigeria — Design Refinements
+   ======================================== */
+
+/* Consistent page typography */
+h1 {
+  font-size: clamp(2.15rem, 5vw, 3.75rem);
+  letter-spacing: -0.035em;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(1.65rem, 3.5vw, 2.5rem);
+  letter-spacing: -0.025em;
+}
+
+h3 {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  letter-spacing: -0.01em;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Better image presentation */
+img,
+picture,
+video {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+img:not([width]):not([height]) {
+  object-fit: cover;
+}
+
+/* Consistent, polished cards */
+@utility card {
+  box-shadow: 0 2px 10px oklch(0.25 0.06 255 / 0.04);
+  transition:
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+@media (hover: hover) {
+  .card:hover {
+    border-color: var(--color-ring);
+    box-shadow: 0 10px 28px oklch(0.25 0.06 255 / 0.09);
+  }
+}
+
+/* Smoother buttons */
+@utility btn {
+  cursor: pointer;
+  gap: 0.5rem;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Cleaner form controls */
+input,
+select,
+textarea {
+  max-width: 100%;
+  border-radius: var(--radius-md);
+}
+
+textarea {
+  line-height: 1.6;
+}
+
+/* Prevent long text from breaking layouts */
+h1,
+h2,
+h3,
+p,
+a {
+  overflow-wrap: anywhere;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Comfortable spacing on small screens */
+@media (max-width: 640px) {
+  body {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+}
