@@ -16,11 +16,8 @@ const nav: { to: "/" | "/guides/$slug" | "/checker" | "/movement" | "/workout" |
 
 export function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-2 no-underline" aria-label="PhysioGuide Nigeria home">
-      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-lg font-bold text-accent-foreground">P</span>
-      <span className="text-lg font-bold leading-tight text-primary-foreground">
-        PhysioGuide <span className="font-normal opacity-80">Nigeria</span>
-      </span>
+    <Link to="/" className="flex shrink-0 items-center" aria-label="PhysioGuide Nigeria home">
+      <img src="/logo-horizontal-light.svg" alt="PhysioGuide Nigeria logo" width={300} height={64} className="block h-10 w-auto sm:h-11" />
     </Link>
   );
 }
