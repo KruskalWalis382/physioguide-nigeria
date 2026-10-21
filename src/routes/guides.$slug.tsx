@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout, Disclaimer } from "@/components/SiteLayout";
-import { getGuide } from "@/lib/guides";
+import { getGuide, type ClinicalDetails } from "@/lib/guides";
 import { Picture } from "@/components/Picture";
 import back from "@/assets/guide-back.jpg";
 import knee from "@/assets/guide-knee.jpg";
@@ -43,7 +43,7 @@ function List({ items }: { items: string[] }) {
   );
 }
 
-function ClinicalDetails({ clinical }: { clinical: NonNullable<ReturnType<typeof getGuide>["clinical"]> }) {
+function ClinicalSection({ clinical }: { clinical: ClinicalDetails }) {
   return (
     <details className="space-y-3">
       <summary className="card cursor-pointer font-semibold">Explore the clinical details</summary>
@@ -143,7 +143,7 @@ function GuidePage() {
           <Link to="/movement" className="btn btn-outline">Gentle movement ideas</Link>
         </div>
 
-        {g.clinical && <ClinicalDetails clinical={g.clinical} />}
+        {g.clinical && <ClinicalSection clinical={g.clinical} />}
 
         <Disclaimer />
       </article>
