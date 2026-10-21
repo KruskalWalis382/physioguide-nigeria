@@ -23,10 +23,11 @@ async function renderGuide(slug: string) {
 }
 
 function headingPositions(names: string[]) {
-  const headings = Array.from(document.querySelectorAll("h1, h2")).map((h) => h.textContent ?? "");
+  // <summary> carries the clinical section's label, so it counts as a section marker too.
+  const markers = Array.from(document.querySelectorAll("h1, h2, summary")).map((h) => h.textContent ?? "");
   return names.map((name) => {
-    const index = headings.indexOf(name);
-    expect(index, `"${name}" should be rendered as a heading`).toBeGreaterThanOrEqual(0);
+    const index = markers.indexOf(name);
+    expect(index, `"${name}" should be rendered as a section marker`).toBeGreaterThanOrEqual(0);
     return index;
   });
 }
