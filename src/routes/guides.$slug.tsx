@@ -51,6 +51,67 @@ function GuidePage() {
         <Picture src={img[g.slug] ?? back} alt={`Person with ${g.title.toLowerCase()}`} priority className="rounded-xl" />
         <h1 className="text-3xl">{g.title}</h1>
         <p>{g.intro}</p>
+        
+        {g.clinical && (
+          <>
+            <section className="card space-y-3">
+              <h2 className="text-xl">Anatomy: Understanding your lower back</h2>
+              <List items={g.clinical.anatomy} />
+            </section>
+
+            <section className="card space-y-3">
+              <h2 className="text-xl">How low back pain develops</h2>
+              <List items={g.clinical.mechanisms} />
+            </section>
+
+            <section className="card space-y-3">
+              <h2 className="text-xl">Risk factors and everyday demands</h2>
+              <List items={g.clinical.riskFactors} />
+            </section>
+
+            <section className="card space-y-3">
+              <h2 className="text-xl">Clinical distinctions</h2>
+              <List items={g.clinical.clinicalDistinctions} />
+            </section>
+
+            <section className="card space-y-3">
+              <h2 className="text-xl">What a physiotherapy assessment involves</h2>
+              <List items={g.clinical.assessment} />
+            </section>
+
+            <section className="card space-y-3">
+              <h2 className="text-xl">Evidence-informed rehabilitation</h2>
+              <List items={g.clinical.rehabilitation} />
+            </section>
+
+            <section className="card space-y-3">
+              <h2 className="text-xl">Monitoring progress</h2>
+              <List items={g.clinical.progress} />
+            </section>
+
+            <section className="card space-y-3">
+              <h2 className="text-xl">Clinical guidelines and further reading</h2>
+              <ul className="list-disc space-y-3 pl-5">
+                {g.clinical.references.map((reference) => (
+                  <li key={reference.url}>
+                    <a
+                      href={reference.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-primary underline"
+                    >
+                      {reference.title}
+                    </a>
+                    <p className="text-sm text-muted-foreground">
+                      {reference.note}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </>
+        )}
+        
         <section className="card space-y-3">
           <h2 className="text-xl">Common reasons</h2>
           <p className="text-sm text-muted-foreground">These are general possibilities, not an explanation of your own pain.</p>
