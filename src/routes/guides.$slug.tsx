@@ -52,8 +52,12 @@ function GuidePage() {
         <h1 className="text-3xl">{g.title}</h1>
         <p>{g.intro}</p>
         
-        {g.clinical && (
-          <>
+                {g.clinical && (
+          <details className="space-y-3">
+            <summary className="card cursor-pointer font-semibold">
+              Explore the clinical details
+            </summary>
+            <div className="space-y-6">
             <section className="card space-y-3">
               <h2 className="text-xl">Anatomy: Understanding your lower back</h2>
               <List items={g.clinical.anatomy} />
@@ -108,8 +112,9 @@ function GuidePage() {
                   </li>
                 ))}
               </ul>
-            </section>
-          </>
+                        </section>
+            </div>
+          </details>
         )}
         
         <section className="card space-y-3">
