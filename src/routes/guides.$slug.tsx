@@ -43,18 +43,25 @@ function List({ items }: { items: string[] }) {
   );
 }
 
-function ClinicalSection({ clinical }: { clinical: ClinicalDetails }) {
+const clinicalHeadings: Record<string, { anatomy: string; mechanisms: string }> = {
+  "low-back-pain": { anatomy: "Anatomy: Understanding your lower back", mechanisms: "How low back pain develops" },
+  "knee-pain": { anatomy: "Anatomy: Understanding your knee", mechanisms: "How knee pain develops" },
+  "neck-pain": { anatomy: "Anatomy: Understanding your neck", mechanisms: "How neck pain develops" },
+};
+
+function ClinicalSection({ clinical, slug }: { clinical: ClinicalDetails; slug: string }) {
+  const h = clinicalHeadings[slug] ?? { anatomy: "Anatomy", mechanisms: "How this pain develops" };
   return (
     <details className="space-y-3">
       <summary className="card cursor-pointer font-semibold">Explore the clinical details</summary>
       <div className="space-y-6">
         <section className="card space-y-3">
-          <h2 className="text-xl">Anatomy: Understanding your lower back</h2>
+          <h2 className="text-xl">{h.anatomy}</h2>
           <List items={clinical.anatomy} />
         </section>
 
         <section className="card space-y-3">
-          <h2 className="text-xl">How low back pain develops</h2>
+          <h2 className="text-xl">{h.mechanisms}</h2>
           <List items={clinical.mechanisms} />
         </section>
 
@@ -143,7 +150,7 @@ function GuidePage() {
           <Link to="/movement" className="btn btn-outline">Gentle movement ideas</Link>
         </div>
 
-        {g.clinical && <ClinicalSection clinical={g.clinical} />}
+        {g.clinical && <ClinicalSection clinical={g.clinical} slug={g.slug} />}
 
         <Disclaimer />
       </article>

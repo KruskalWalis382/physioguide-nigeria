@@ -100,29 +100,26 @@ describe("Low back pain guide layout", () => {
 });
 
 describe("Other condition guides", () => {
-  it("shows the practical sections for knee pain with no clinical details", async () => {
-    await renderGuide("knee-pain");
+  it.each([
+    ["knee-pain", "Anatomy: Understanding your knee", "https://www.nice.org.uk/guidance/ng226"],
+    ["neck-pain", "Anatomy: Understanding your neck", "https://cks.nice.org.uk/topics/neck-pain-non-specific/"],
+  ])("%s shows practical sections before collapsed clinical details", async (slug, anatomy, ref) => {
+    await renderGuide(slug);
 
     const order = headingPositions([
       "Common reasons",
       "General self-care that often helps",
       "Book a professional assessment if",
       "Get urgent medical help if",
+      "Explore the clinical details",
     ]);
     expect(order).toEqual([...order].sort((a, b) => a - b));
-    expect(document.querySelector("details")).toBeNull();
-  });
 
-  it("shows the practical sections for neck pain with no clinical details", async () => {
-    await renderGuide("neck-pain");
-
-    const order = headingPositions([
-      "Common reasons",
-      "General self-care that often helps",
-      "Book a professional assessment if",
-      "Get urgent medical help if",
-    ]);
-    expect(order).toEqual([...order].sort((a, b) => a - b));
-    expect(document.querySelector("details")).toBeNull();
+    const details = document.querySelector("details")!;
+    expect(details.hasAttribute("open")).toBe(false);
+    expect(details.textContent).toContain(anatomy);
+    expect(details.textContent).not.toContain("lower back");
+    const hrefs = Array.from(details.querySelectorAll("a")).map((a) => a.getAttribute("href"));
+    expect(hrefs).toContain(ref);
   });
 });
