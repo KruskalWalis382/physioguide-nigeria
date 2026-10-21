@@ -91,7 +91,6 @@ describe("Low back pain guide layout", () => {
     const urgent = Array.from(document.querySelectorAll("h2")).find((h) => h.textContent === "Get urgent medical help if")!;
     const details = document.querySelector("details")!;
 
-    expect(document.body.compareDocumentPosition(urgent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(urgent.compareDocumentPosition(checker) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(checker.compareDocumentPosition(details) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(checker.getAttribute("href")).toBe("/checker");
