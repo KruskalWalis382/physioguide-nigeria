@@ -1,8 +1,26 @@
+export interface ClinicalReference {
+  title: string;
+  url: string;
+  note: string;
+}
+
+export interface ClinicalDetails {
+  anatomy: string[];
+  mechanisms: string[];
+  riskFactors: string[];
+  clinicalDistinctions: string[];
+  assessment: string[];
+  rehabilitation: string[];
+  progress: string[];
+  references: ClinicalReference[];
+}
+
 export interface Guide {
   slug: string;
   title: string;
   short: string;
   intro: string;
+  clinical?: ClinicalDetails;
   causes: string[];
   advice: string[];
   seeHelp: string[];
