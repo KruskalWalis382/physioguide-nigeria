@@ -178,14 +178,13 @@ function Index() {
                 {pathway.description}
               </p>
 
-              {pathway.href === "/guides/$slug" ? (
-                <Link
-                  to={pathway.href}
-                  params={pathway.params}
+              {pathway.href === "/#health-guides" ? (
+                <a
+                  href="#health-guides"
                   className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-accent"
                 >
                   {pathway.action} <span aria-hidden="true">→</span>
-                </Link>
+                </a>
               ) : (
                 <Link
                   to={pathway.href}
