@@ -10,9 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as CheckerRouteImport } from './routes/checker'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as LearningRouteImport } from './routes/learning'
 import { Route as MovementRouteImport } from './routes/movement'
 import { Route as PostureRouteImport } from './routes/posture'
 import { Route as WorkoutRouteImport } from './routes/workout'
@@ -21,6 +23,11 @@ import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckerRoute = CheckerRouteImport.update({
@@ -36,6 +43,11 @@ const ContactRoute = ContactRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearningRoute = LearningRouteImport.update({
+  id: '/learning',
+  path: '/learning',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MovementRoute = MovementRouteImport.update({
@@ -61,9 +73,11 @@ const GuidesSlugRoute = GuidesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/checker': typeof CheckerRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/learning': typeof LearningRoute
   '/movement': typeof MovementRoute
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
@@ -71,9 +85,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/checker': typeof CheckerRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/learning': typeof LearningRoute
   '/movement': typeof MovementRoute
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
@@ -82,9 +98,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/checker': typeof CheckerRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/learning': typeof LearningRoute
   '/movement': typeof MovementRoute
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
@@ -94,9 +112,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/checker'
     | '/contact'
     | '/faq'
+    | '/learning'
     | '/movement'
     | '/posture'
     | '/workout'
@@ -104,9 +124,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/checker'
     | '/contact'
     | '/faq'
+    | '/learning'
     | '/movement'
     | '/posture'
     | '/workout'
@@ -114,9 +136,11 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/checker'
     | '/contact'
     | '/faq'
+    | '/learning'
     | '/movement'
     | '/posture'
     | '/workout'
@@ -125,9 +149,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   CheckerRoute: typeof CheckerRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
+  LearningRoute: typeof LearningRoute
   MovementRoute: typeof MovementRoute
   PostureRoute: typeof PostureRoute
   WorkoutRoute: typeof WorkoutRoute
@@ -141,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checker': {
@@ -162,6 +195,13 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learning': {
+      id: '/learning'
+      path: '/learning'
+      fullPath: '/learning'
+      preLoaderRoute: typeof LearningRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/movement': {
@@ -197,9 +237,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   CheckerRoute: CheckerRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
+  LearningRoute: LearningRoute,
   MovementRoute: MovementRoute,
   PostureRoute: PostureRoute,
   WorkoutRoute: WorkoutRoute,
