@@ -56,8 +56,7 @@ const pathways = [
     description:
       "Build your understanding of anatomy, movement, clinical assessment, rehabilitation, and evidence-informed practice.",
     action: "Explore clinical topics",
-    href: "/guides/$slug" as const,
-    params: { slug: "low-back-pain" },
+    href: "/learning" as const,
     style: "border-t-4 border-t-accent",
   },
   {
@@ -67,8 +66,7 @@ const pathways = [
     description:
       "Understand common muscle and joint conditions, explore general self-care, and learn when to seek professional help.",
     action: "Explore health guides",
-    href: "/guides/$slug" as const,
-    params: { slug: "low-back-pain" },
+    href: "/#health-guides" as const,
     style: "border-t-4 border-t-primary",
   },
 ];
@@ -180,9 +178,10 @@ function Index() {
                 {pathway.description}
               </p>
 
-              {pathway.href === "/about" ? (
+              {pathway.href === "/guides/$slug" ? (
                 <Link
                   to={pathway.href}
+                  params={pathway.params}
                   className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-accent"
                 >
                   {pathway.action} <span aria-hidden="true">→</span>
@@ -190,7 +189,6 @@ function Index() {
               ) : (
                 <Link
                   to={pathway.href}
-                  params={pathway.params}
                   className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-accent"
                 >
                   {pathway.action} <span aria-hidden="true">→</span>
