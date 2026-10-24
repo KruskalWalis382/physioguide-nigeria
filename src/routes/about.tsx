@@ -214,23 +214,166 @@ function AboutPage() {
           </div>
         </section>
 
-        <section id="study" className="scroll-mt-24 space-y-5">
-          <h2 className="text-2xl font-bold">Study physiotherapy in Nigeria</h2>
-          <p className="rounded-lg border-l-4 border-accent bg-teal-soft p-4 text-sm">
-            <strong>General guidance, not official advice.</strong> Admission cut-offs, subject combinations, programme length, accreditation and registration rules can change. Always confirm with JAMB, the university, the NUC and the MRTB before applying.
+        
+<section id="study" className="scroll-mt-24 space-y-6">
+  <div className="space-y-3">
+    <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+      Your education pathway
+    </p>
+    <h2 className="text-2xl font-bold">
+      Study Physiotherapy in Nigeria
+    </h2>
+    <p className="max-w-3xl leading-7 text-muted-foreground">
+      Physiotherapy combines medical science, movement, rehabilitation and
+      patient care. Studying it requires more than reading textbooks:
+      students develop practical skills, learn clinical reasoning and gain
+      supervised experience with people who have different health needs.
+      The pathway below can help you understand what to investigate before
+      applying.
+    </p>
+  </div>
+
+  <div className="grid gap-4 sm:grid-cols-2">
+    {[
+      {
+        number: "01",
+        title: "Choose a recognised programme",
+        text: "Identify Nigerian universities offering Physiotherapy. Check the current programme status, admission information, curriculum and available clinical training facilities. Do not rely on an old admission advert or an unofficial social media post.",
+      },
+      {
+        number: "02",
+        title: "Understand admission requirements",
+        text: "Review the current JAMB UTME subject combination, O'Level requirements, accepted examination sittings and university-specific conditions. Biology, Chemistry and Physics are commonly relevant science subjects, but you must verify the exact requirements for your chosen university and admission year. Direct Entry applicants should check the applicable conditions separately.",
+      },
+      {
+        number: "03",
+        title: "Prepare for the academic workload",
+        text: "Expect to study subjects such as anatomy, physiology, pathology, biomechanics, kinesiology, exercise therapy, electrotherapy and clinical assessment. The exact course structure and duration vary by programme and must be confirmed with the university.",
+      },
+      {
+        number: "04",
+        title: "Develop practical skills",
+        text: "Learning includes movement analysis, patient communication, examination techniques, exercise prescription, clinical reasoning, professional ethics and safe handling. Practical competence develops through teaching, practice, feedback and supervision.",
+      },
+      {
+        number: "05",
+        title: "Take clinical placements seriously",
+        text: "Clinical education helps students connect classroom knowledge with real patient care. Placements may expose students to musculoskeletal, neurological, paediatric, cardiorespiratory and other rehabilitation settings, depending on the programme and placement opportunities.",
+      },
+      {
+        number: "06",
+        title: "Confirm the graduation-to-practice pathway",
+        text: "Graduation alone should not be assumed to authorise independent practice. Confirm the current requirements for internship, registration and professional practice directly with the relevant university and the Medical Rehabilitation Therapists (Registration) Board of Nigeria (MRTB).",
+      },
+    ].map((step) => (
+      <article key={step.number} className="card space-y-3">
+        <div className="flex items-start gap-3">
+          <span
+            className="flex size-10 shrink-0 items-center justify-center rounded-full bg-teal-soft font-bold text-accent"
+            aria-hidden="true"
+          >
+            {step.number}
+          </span>
+          <h3 className="pt-1 text-lg font-bold">{step.title}</h3>
+        </div>
+        <p className="text-sm leading-7 text-muted-foreground">
+          {step.text}
+        </p>
+      </article>
+    ))}
+  </div>
+
+  <div className="space-y-4 rounded-xl border bg-card p-5 sm:p-6">
+    <h3 className="text-xl font-bold">
+      What should you check before applying?
+    </h3>
+    <p className="leading-7 text-muted-foreground">
+      Use this checklist when comparing universities. Admission requirements
+      and professional rules can change, so confirm the latest information
+      before making a decision.
+    </p>
+
+    <ul className="space-y-3">
+      {[
+        "The university currently offers the Physiotherapy programme.",
+        "The programme's approval and accreditation status have been verified through the appropriate official bodies.",
+        "The current JAMB subject combination and O'Level requirements are clear.",
+        "The university's current cut-off mark and additional admission conditions have been checked.",
+        "The curriculum, practical facilities and clinical placement arrangements have been reviewed.",
+        "The university can explain the current graduation, internship and professional registration pathway.",
+        "The total cost, accommodation options and other study expenses have been considered.",
+      ].map((item) => (
+        <li key={item} className="flex items-start gap-3">
+          <span
+            className="mt-1 flex size-5 shrink-0 items-center justify-center rounded-full border border-accent text-xs text-accent"
+            aria-hidden="true"
+          >
+            ✓
+          </span>
+          <span className="text-sm leading-6">{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div className="space-y-4">
+    <h3 className="text-xl font-bold">
+      Official resources for prospective students
+    </h3>
+    <div className="grid gap-3 sm:grid-cols-3">
+      {[
+        {
+          title: "Joint Admissions and Matriculation Board",
+          acronym: "JAMB",
+          text: "Check current admission guidance and UTME information.",
+          url: "https://www.jamb.gov.ng",
+        },
+        {
+          title: "National Universities Commission",
+          acronym: "NUC",
+          text: "Consult official university and programme information.",
+          url: "https://www.nuc.edu.ng",
+        },
+        {
+          title: "Medical Rehabilitation Therapists Board",
+          acronym: "MRTB",
+          text: "Check professional registration and regulatory guidance.",
+          url: "https://mrtb.gov.ng",
+        },
+      ].map((resource) => (
+        <article key={resource.acronym} className="card space-y-3">
+          <p className="text-sm font-semibold text-accent">
+            {resource.acronym}
           </p>
-          <ol className="space-y-3">
-            {studySteps.map((s, i) => (
-              <li key={s.title} className="card flex gap-4">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground">{i + 1}</span>
-                <div>
-                  <p className="font-bold">{s.title}</p>
-                  <p className="text-sm leading-6 text-muted-foreground">{s.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
+          <h4 className="font-bold">{resource.title}</h4>
+          <p className="text-sm leading-6 text-muted-foreground">
+            {resource.text}
+          </p>
+          <a
+            href={resource.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center font-semibold text-accent underline underline-offset-4"
+          >
+            Visit official website ↗
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <div className="rounded-xl border-l-4 border-accent bg-teal-soft p-4">
+    <h3 className="font-bold">A final piece of advice</h3>
+    <p className="mt-2 text-sm leading-7">
+      Choose a programme based on verified information, not only its
+      popularity or location. Speak with the university's admissions office
+      and, where possible, current students or practising physiotherapists.
+      This section is an educational guide, not an official admission notice
+      or guarantee of eligibility.
+    </p>
+  </div>
+</section>
+
 
         <section id="careers" className="scroll-mt-24 space-y-5">
           <h2 className="text-2xl font-bold">Career opportunities and work settings</h2>
