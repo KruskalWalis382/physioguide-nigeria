@@ -567,61 +567,209 @@ function AboutPage() {
   </div>
 </section>
 
-        <section id="practice" className="scroll-mt-24 space-y-5">
-          <h2 className="text-2xl font-bold">Professional practice and regulation</h2>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {[
-              ["Ethics and accountability", "Acting honestly and taking responsibility for your decisions."],
-              ["Informed consent", "Explaining options, benefits and risks so the person can choose freely."],
-              ["Confidentiality", "Protecting personal health information."],
-              ["Safe, patient-centred care", "Putting the person's safety, values and goals first."],
-              ["Multidisciplinary teamwork", "Working with doctors, nurses, therapists and others."],
-              ["Evidence-informed decisions", "Combining research, clinical experience and patient preferences."],
-              ["Boundaries and referral", "Recognising when a problem is outside your competence and referring."],
-              ["Regulation (MRTB)", "In Nigeria, the MRTB registers and regulates physiotherapists and other medical rehabilitation therapists."],
-            ].map(([t, d]) => (
-              <li key={t} className="card space-y-1">
-                <p className="font-bold">{t}</p>
-                <p className="text-sm leading-6 text-muted-foreground">{d}</p>
-              </li>
-            ))}
-          </ul>
+        
+<section id="practice" className="scroll-mt-24 space-y-6">
+  <div className="space-y-3">
+    <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+      Professional responsibility
+    </p>
+    <h2 className="text-2xl font-bold">
+      Professional practice and regulation
+    </h2>
+    <p className="max-w-3xl leading-7 text-muted-foreground">
+      Physiotherapy involves professional judgement, patient interaction and
+      decisions that can affect a person's health, independence and quality
+      of life. Safe practice requires appropriate knowledge, ethical conduct,
+      respect for patient rights and accountability for professional
+      decisions.
+    </p>
+  </div>
 
-          <h3 className="text-xl font-bold">Ethical scenarios</h3>
-          <div className="space-y-4">
-            {scenarios.map((s, i) => {
-              const pick = picks[i];
-              return (
-                <fieldset key={s.q} className="card space-y-3">
-                  <legend className="sr-only">Scenario {i + 1}</legend>
-                  <p className="font-semibold">Scenario {i + 1}: {s.q}</p>
-                  <div className="space-y-2">
-                    {s.options.map((o, j) => {
-                      const state = pick === null ? "" : j === s.correct ? "border-accent bg-teal-soft" : j === pick ? "border-destructive" : "";
-                      return (
-                        <button
-                          key={o}
-                          type="button"
-                          aria-pressed={pick === j}
-                          onClick={() => setPicks(picks.map((p, k) => (k === i ? j : p)))}
-                          className={`block w-full rounded-lg border p-3 text-left text-sm ${state}`}
-                        >
-                          {o}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {pick !== null && (
-                    <p role="status" className="text-sm leading-6">
-                      <strong>{pick === s.correct ? "Good choice." : "Not the best option."}</strong> {s.why}
-                    </p>
-                  )}
-                </fieldset>
-              );
-            })}
-          </div>
-          <p className="text-sm text-muted-foreground">These examples illustrate general principles and do not replace official MRTB or professional guidance.</p>
-        </section>
+  <div className="grid gap-3 sm:grid-cols-2">
+    {[
+      {
+        title: "Ethics and accountability",
+        text: "Act honestly, document care accurately, acknowledge limitations and take responsibility for professional decisions. Never falsify records or promise outcomes that cannot be guaranteed.",
+      },
+      {
+        title: "Informed consent",
+        text: "Explain the proposed assessment or intervention, its purpose, relevant risks, expected benefits and alternatives in language the person understands. Respect their right to ask questions, decline or withdraw consent.",
+      },
+      {
+        title: "Confidentiality and privacy",
+        text: "Protect patient records, conversations, photographs and other identifying information. Share information only when appropriately authorised or legally justified, following applicable professional and privacy requirements.",
+      },
+      {
+        title: "Safe, patient-centred care",
+        text: "Consider the person's goals, preferences, health status, functional needs and environment. Check relevant risks, adapt interventions appropriately and review the person's response.",
+      },
+      {
+        title: "Multidisciplinary teamwork",
+        text: "Communicate relevant findings and coordinate care with other professionals when appropriate. Respect each professional's responsibilities and keep the patient's needs at the centre of decisions.",
+      },
+      {
+        title: "Evidence-informed decisions",
+        text: "Combine the best available research, clinical expertise and the person's values and circumstances. Review outcomes and reconsider an approach when progress, safety or new evidence requires it.",
+      },
+      {
+        title: "Professional boundaries",
+        text: "Maintain respectful therapeutic relationships, avoid exploitation and recognise conflicts of interest. Protect the dignity and autonomy of people receiving care.",
+      },
+      {
+        title: "Competence, referral and escalation",
+        text: "Practise within your education, demonstrated competence and authorised scope. Seek supervision, consult colleagues or refer when a person's needs exceed your competence. Escalate urgent warning signs promptly.",
+      },
+    ].map((item) => (
+      <article key={item.title} className="card space-y-2">
+        <h3 className="font-bold">{item.title}</h3>
+        <p className="text-sm leading-7 text-muted-foreground">
+          {item.text}
+        </p>
+      </article>
+    ))}
+  </div>
+
+  <div className="space-y-4">
+    <h3 className="text-xl font-bold">
+      Professional regulation in Nigeria
+    </h3>
+    <div className="card space-y-3">
+      <h4 className="text-lg font-bold">
+        Medical Rehabilitation Therapists (Registration) Board of Nigeria
+      </h4>
+      <p className="leading-7 text-muted-foreground">
+        The MRTB is the statutory regulatory body responsible for the
+        registration and regulation of medical rehabilitation professions
+        within its remit in Nigeria, including physiotherapy. Its regulatory
+        responsibilities relate to professional standards and lawful
+        practice.
+      </p>
+      <p className="leading-7 text-muted-foreground">
+        Physiotherapy graduates and practitioners should verify current
+        requirements for registration, internship, renewal and professional
+        obligations directly with the Board and their relevant institutions.
+        Do not assume that graduation alone establishes eligibility for
+        independent practice.
+      </p>
+      <a
+        href="https://mrtb.gov.ng"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex min-h-11 items-center font-semibold text-accent underline underline-offset-4"
+      >
+        Visit the MRTB website ↗
+      </a>
+      <p className="text-sm text-muted-foreground">
+        Always consult current official requirements. This educational
+        overview is not a substitute for regulatory advice.
+      </p>
+    </div>
+  </div>
+
+  <div className="space-y-4">
+    <h3 className="text-xl font-bold">
+      What does responsible practice look like?
+    </h3>
+    <div className="grid gap-3 sm:grid-cols-2">
+      {[
+        {
+          title: "Before an intervention",
+          text: "Review relevant history and assessment findings, check safety considerations, explain the proposed intervention and obtain appropriate consent.",
+        },
+        {
+          title: "During treatment",
+          text: "Monitor the person's response, communicate clearly, protect dignity and modify or stop an activity when safety or tolerance requires it.",
+        },
+        {
+          title: "After treatment",
+          text: "Document findings and interventions, evaluate the response, explain relevant advice and agree on appropriate next steps.",
+        },
+        {
+          title: "When something is outside your scope",
+          text: "Acknowledge the limitation, seek appropriate support and arrange referral or escalation rather than proceeding beyond your competence.",
+        },
+      ].map((item) => (
+        <article key={item.title} className="card space-y-2">
+          <h4 className="font-bold">{item.title}</h4>
+          <p className="text-sm leading-7 text-muted-foreground">
+            {item.text}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <div className="space-y-4">
+    <h3 className="text-xl font-bold">Ethical scenarios</h3>
+    <p className="leading-7 text-muted-foreground">
+      Apply these principles to the situations below. Select an answer to
+      receive feedback and consider why the decision matters in practice.
+    </p>
+
+    <div className="space-y-4">
+      {scenarios.map((s, i) => {
+        const pick = picks[i];
+        return (
+          <fieldset key={s.q} className="card space-y-3">
+            <legend className="sr-only">Scenario {i + 1}</legend>
+            <p className="font-semibold">
+              Scenario {i + 1}: {s.q}
+            </p>
+            <div className="space-y-2">
+              {s.options.map((o, j) => {
+                const state =
+                  pick === null
+                    ? ""
+                    : j === s.correct
+                      ? "border-accent bg-teal-soft"
+                      : j === pick
+                        ? "border-destructive"
+                        : "";
+                return (
+                  <button
+                    key={o}
+                    type="button"
+                    aria-pressed={pick === j}
+                    onClick={() =>
+                      setPicks(
+                        picks.map((p, k) => (k === i ? j : p))
+                      )
+                    }
+                    className={`block w-full rounded-lg border p-3 text-left text-sm ${state}`}
+                  >
+                    {o}
+                  </button>
+                );
+              })}
+            </div>
+            {pick !== null && (
+              <p role="status" className="text-sm leading-6">
+                <strong>
+                  {pick === s.correct
+                    ? "Good choice."
+                    : "Not the best option."}
+                </strong>{" "}
+                {s.why}
+              </p>
+            )}
+          </fieldset>
+        );
+      })}
+    </div>
+  </div>
+
+  <div className="rounded-xl border-l-4 border-accent bg-teal-soft p-4">
+    <h3 className="font-bold">Remember</h3>
+    <p className="mt-2 text-sm leading-7">
+      Ethical practice is not only about knowing the rules. It means applying
+      them consistently, recognising uncertainty, protecting patients and
+      seeking help when needed. These examples explain general principles
+      and do not replace official MRTB requirements, applicable law or
+      professional guidance.
+    </p>
+  </div>
+</section>
+
 
         <section id="quiz" className="scroll-mt-24 space-y-5">
           <h2 className="text-2xl font-bold">Is physiotherapy right for you?</h2>
