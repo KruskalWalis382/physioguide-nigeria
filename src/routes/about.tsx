@@ -193,17 +193,52 @@ a: "You can contact a recognised hospital, rehabilitation service or professiona
 ];
 
 const references = [
-  { group: "Official Nigerian sources", items: [
-    { title: "Joint Admissions and Matriculation Board (JAMB)", url: "https://www.jamb.gov.ng", note: "Admission process, subject combinations and current requirements." },
-    { title: "National Universities Commission (NUC)", url: "https://www.nuc.edu.ng", note: "Approved universities and programme information." },
-    { title: "Medical Rehabilitation Therapists (Registration) Board of Nigeria (MRTB)", url: "https://mrtb.gov.ng", note: "Professional registration and regulation. Verify the current web address if the link does not open." },
-  ]},
-  { group: "General physiotherapy information", items: [
-    { title: "World Physiotherapy — What is physiotherapy?", url: "https://world.physio/resources/what-is-physiotherapy", note: "International description of the profession." },
-    { title: "World Health Organization — Rehabilitation fact sheet", url: "https://www.who.int/news-room/fact-sheets/detail/rehabilitation", note: "Why rehabilitation matters for health." },
-  ]},
+  {
+    group: "Nigerian education and professional regulation",
+    items: [
+      {
+        title: "Joint Admissions and Matriculation Board (JAMB)",
+        url: "https://www.jamb.gov.ng",
+        note: "Official information on university admissions, UTME and admission procedures. Check current requirements before applying.",
+      },
+      {
+        title: "National Universities Commission (NUC)",
+        url: "https://www.nuc.edu.ng",
+        note: "Information on university education, programme accreditation and the Nigerian university system.",
+      },
+      {
+        title: "Medical Rehabilitation Therapists (Registration) Board of Nigeria (MRTB)",
+        url: "https://www.mrtb.gov.ng/en/",
+        note: "The professional regulatory body for physiotherapy and other regulated rehabilitation professions in Nigeria. Consult the Board for current registration and practice requirements.",
+      },
+      {
+        title: "MRTB Professional Services",
+        url: "https://portals.mrtb.gov.ng/",
+        note: "Access professional services and information on licensing, accreditation, student indexing and other regulatory processes.",
+      },
+    ],
+  },
+  {
+    group: "International physiotherapy guidance",
+    items: [
+      {
+        title: "World Physiotherapy — What is physiotherapy?",
+        url: "https://world.physio/resources/what-is-physiotherapy",
+        note: "An international overview of physiotherapy, its scope and its role in movement, function and quality of life.",
+      },
+    ],
+  },
+  {
+    group: "Public health and rehabilitation",
+    items: [
+      {
+        title: "World Health Organization (WHO) — Rehabilitation",
+        url: "https://www.who.int/news-room/fact-sheets/detail/rehabilitation",
+        note: "An overview of rehabilitation, its importance, and its contribution to health, functioning and participation in everyday life.",
+      },
+    ],
+  },
 ];
-
 function AboutPage() {
   const [answers, setAnswers] = useState<(number | null)[]>(quiz.map(() => null));
   const [showSummary, setShowSummary] = useState(false);
