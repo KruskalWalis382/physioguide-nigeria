@@ -375,22 +375,197 @@ function AboutPage() {
 </section>
 
 
-        <section id="careers" className="scroll-mt-24 space-y-5">
-          <h2 className="text-2xl font-bold">Career opportunities and work settings</h2>
-          <Picture src={imgDesk} alt="Workplace desk set-up, an example of ergonomics work" ratio="aspect-[16/7]" className="rounded-xl" />
-          <div className="grid gap-3 sm:grid-cols-2">
-            {workSettings.map((w) => (
-              <div key={w.title} className="card space-y-1">
-                <p className="font-bold">{w.title}</p>
-                <p className="text-sm leading-6 text-muted-foreground"><strong>Example tasks:</strong> {w.tasks}</p>
-              </div>
-            ))}
-          </div>
-          <div className="card space-y-2">
-            <h3 className="text-lg font-bold">Growing your career</h3>
-            <p className="leading-7">Possible directions include specialising in a clinical area, postgraduate study, research, teaching, leadership or running a practice. Continuing professional development (CPD) keeps knowledge and skills current and safe. Job availability and income vary by location, setting and experience, so no outcome is guaranteed.</p>
-          </div>
-        </section>
+        
+<section id="careers" className="scroll-mt-24 space-y-6">
+  <div className="space-y-3">
+    <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+      Build your future
+    </p>
+    <h2 className="text-2xl font-bold">
+      Career opportunities and work settings
+    </h2>
+    <p className="max-w-3xl leading-7 text-muted-foreground">
+      Physiotherapy offers different ways to contribute to health and
+      rehabilitation. Your daily responsibilities depend on your training,
+      experience, work setting and professional scope. You may work directly
+      with patients, support injury prevention, educate communities,
+      contribute to research or help improve healthcare services.
+    </p>
+  </div>
+
+  <Picture
+    src={imgDesk}
+    alt="Workplace desk set-up, an example of ergonomics work"
+    ratio="aspect-[16/7]"
+    className="rounded-xl"
+  />
+
+  <div className="grid gap-3 sm:grid-cols-2">
+    {workSettings.map((w) => (
+      <div key={w.title} className="card space-y-2">
+        <p className="font-bold">{w.title}</p>
+        <p className="text-sm leading-6 text-muted-foreground">
+          <strong>Example tasks:</strong> {w.tasks}
+        </p>
+      </div>
+    ))}
+  </div>
+
+  <div className="space-y-4">
+    <h3 className="text-xl font-bold">
+      What can a physiotherapist do in these settings?
+    </h3>
+
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        {
+          title: "Clinical assessment and rehabilitation",
+          text: "Assess movement, strength, balance, function and activity limitations; agree goals with patients; deliver appropriate rehabilitation; and monitor progress.",
+        },
+        {
+          title: "Prevention and health education",
+          text: "Teach safe movement, physical activity, injury prevention, workplace ergonomics and practical ways to maintain function.",
+        },
+        {
+          title: "Sports and performance support",
+          text: "Contribute to injury rehabilitation, graded return to sport, physical conditioning and collaboration with coaches and other healthcare professionals.",
+        },
+        {
+          title: "Community and home-based care",
+          text: "Support people living with disability or long-term conditions, identify barriers to participation and help improve independence in daily activities.",
+        },
+        {
+          title: "Teaching and research",
+          text: "Support student learning, develop educational resources, participate in research and use evidence to improve rehabilitation practice.",
+        },
+        {
+          title: "Health technology and entrepreneurship",
+          text: "Contribute to digital health education, accessible rehabilitation resources, service development and responsible healthcare innovation.",
+        },
+      ].map((role) => (
+        <article key={role.title} className="card space-y-2">
+          <h4 className="font-bold">{role.title}</h4>
+          <p className="text-sm leading-7 text-muted-foreground">
+            {role.text}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <div className="space-y-4">
+    <h3 className="text-xl font-bold">
+      Skills that support career growth
+    </h3>
+    <p className="leading-7 text-muted-foreground">
+      Clinical knowledge is essential, but effective physiotherapy also
+      requires sound judgement, communication, teamwork and a commitment
+      to learning.
+    </p>
+
+    <div className="grid gap-3 sm:grid-cols-2">
+      {[
+        {
+          title: "Clinical reasoning",
+          text: "Connect assessment findings with relevant evidence, identify priorities and recognise when referral is necessary.",
+        },
+        {
+          title: "Communication and empathy",
+          text: "Listen carefully, explain information in understandable language and involve patients in decisions about their care.",
+        },
+        {
+          title: "Evidence-informed practice",
+          text: "Read research critically, consult relevant guidelines and combine evidence with clinical expertise and patient preferences.",
+        },
+        {
+          title: "Teamwork and professionalism",
+          text: "Collaborate with other professionals, respect confidentiality, maintain appropriate boundaries and practise within your competence.",
+        },
+        {
+          title: "Documentation and organisation",
+          text: "Keep accurate clinical records, set measurable goals, monitor outcomes and manage time and responsibilities appropriately.",
+        },
+        {
+          title: "Digital and business skills",
+          text: "Use appropriate digital tools, communicate health information responsibly and understand service management where relevant to your role.",
+        },
+      ].map((skill) => (
+        <article key={skill.title} className="card space-y-2">
+          <h4 className="font-bold">{skill.title}</h4>
+          <p className="text-sm leading-7 text-muted-foreground">
+            {skill.text}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <div className="space-y-4">
+    <h3 className="text-xl font-bold">
+      How can a physiotherapy career develop?
+    </h3>
+    <p className="leading-7 text-muted-foreground">
+      Career development is not always a straight line. Opportunities depend
+      on qualifications, experience, available positions, professional
+      requirements and personal interests.
+    </p>
+
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        {
+          stage: "01",
+          title: "Graduate",
+          text: "Build a strong foundation in clinical knowledge, professional conduct and supervised practice.",
+        },
+        {
+          stage: "02",
+          title: "Early-career clinician",
+          text: "Strengthen assessment, treatment planning, documentation and communication skills while seeking feedback and mentorship.",
+        },
+        {
+          stage: "03",
+          title: "Develop an area of interest",
+          text: "Gain further experience in a clinical area and pursue relevant training or postgraduate education where appropriate.",
+        },
+        {
+          stage: "04",
+          title: "Broaden your contribution",
+          text: "Explore opportunities in advanced clinical responsibilities, teaching, research, management, community services or entrepreneurship.",
+        },
+      ].map((stage) => (
+        <article key={stage.stage} className="card space-y-3">
+          <span
+            className="flex size-10 items-center justify-center rounded-full bg-teal-soft font-bold text-accent"
+            aria-hidden="true"
+          >
+            {stage.stage}
+          </span>
+          <h4 className="font-bold">{stage.title}</h4>
+          <p className="text-sm leading-7 text-muted-foreground">
+            {stage.text}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <div className="card space-y-3">
+    <h3 className="text-xl font-bold">Growing your career</h3>
+    <p className="leading-7">
+      Continuing professional development (CPD) helps physiotherapists keep
+      their knowledge and skills current. Depending on your goals, this may
+      include courses, professional workshops, mentorship, postgraduate
+      study, research, teaching or leadership development.
+    </p>
+    <p className="leading-7 text-muted-foreground">
+      Before pursuing a specialisation, additional qualification or private
+      practice, check the relevant professional requirements and make sure
+      your activities remain within your competence and scope of practice.
+      Job availability and income vary by location, setting, experience and
+      other factors; no particular outcome is guaranteed.
+    </p>
+  </div>
+</section>
 
         <section id="practice" className="scroll-mt-24 space-y-5">
           <h2 className="text-2xl font-bold">Professional practice and regulation</h2>
