@@ -1,5 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { specialtyDetails } from "@/lib/specialties";
 import { SiteLayout, Disclaimer } from "@/components/SiteLayout";
 import { Picture } from "@/components/Picture";
 import hero from "@/assets/hero-physio.jpg";
@@ -207,21 +210,7 @@ function AboutPage() {
           <h2 className="text-2xl font-bold">Explore physiotherapy specialties</h2>
           <p className="text-muted-foreground">These are examples of practice areas. Many physiotherapists work across more than one.</p>
           <div className="grid gap-4 sm:grid-cols-2">
-            {specialties.map((s) => (
-              <div key={s.title} className="card overflow-hidden p-0">
-                <Picture src={s.img} alt={s.alt} ratio="aspect-[16/9]" />
-                <div className="space-y-2 p-5">
-                  <h3 className="text-lg font-bold">{s.title}</h3>
-                  <p className="text-sm leading-6"><strong>Focus:</strong> {s.focus}</p>
-                  <p className="text-sm leading-6"><strong>Common problems:</strong> {s.conditions}</p>
-                  <details className="text-sm">
-                    <summary className="cursor-pointer font-semibold text-accent">Example scenario and goals</summary>
-                    <p className="mt-2 leading-6"><strong>Scenario:</strong> {s.scenario}</p>
-                    <p className="leading-6"><strong>Goals and interventions:</strong> {s.goals}</p>
-                  </details>
-                </div>
-              </div>
-            ))}
+            {specialties.map((s) => <SpecialtyCard key={s.title} specialty={s} />)}
           </div>
         </section>
 
@@ -405,5 +394,67 @@ function AboutPage() {
         <Disclaimer />
       </article>
     </SiteLayout>
+  );
+}
+
+function SpecialtyCard({ specialty: s }: { specialty: (typeof specialties)[number] }) {
+  const [expanded, setExpanded] = useState(false);
+  const detail = specialtyDetails[s.title];
+  if (!detail) return null;
+  const headingId = `specialty-heading-${detail.id}`;
+  const panelId = `specialty-detail-${detail.id}`;
+
+  return (
+    <div className="card self-start overflow-hidden p-0">
+      <Picture src={s.img} alt={s.alt} ratio="aspect-[16/9]" />
+      <div className="space-y-3 p-5">
+        <h3 id={headingId} className="text-lg font-bold">{s.title}</h3>
+        <p className="text-sm leading-6"><strong>Focus:</strong> {s.focus}</p>
+        <p className="text-sm leading-6"><strong>Common problems:</strong> {s.conditions}</p>
+        <Button
+          type="button"
+          variant="outline"
+          className="min-h-12 whitespace-normal border-accent text-accent hover:bg-teal-soft hover:text-accent"
+          aria-expanded={expanded}
+          aria-controls={panelId}
+          onClick={() => setExpanded((current) => !current)}
+        >
+          {expanded ? "Show less" : "Click to see more"}
+          {expanded ? <ChevronUp aria-hidden="true" /> : <ChevronDown aria-hidden="true" />}
+        </Button>
+        <section id={panelId} aria-labelledby={headingId} hidden={!expanded}>
+          <div className="space-y-5 border-t pt-5 text-sm leading-6 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-200">
+            <p className="border-l-4 border-accent bg-teal-soft p-3">Educational examples, not a diagnosis or an individual treatment plan. Assessment and rehabilitation are adapted by qualified professionals within their scope.</p>
+            {detail.sections.map((section) => (
+              <div key={section.title} className="space-y-2">
+                <h4 className="font-semibold text-primary">{section.title}</h4>
+                <p>{section.text}</p>
+              </div>
+            ))}
+            <div className="space-y-2">
+              <h4 className="font-semibold text-primary">Practical clinical example</h4>
+              <p><strong>Scenario:</strong> {s.scenario}</p>
+              <p><strong>Rehabilitation focus:</strong> {s.goals}</p>
+              <p className="text-muted-foreground">The clinician agrees meaningful goals with the person, assesses safety and reviews progress before changing activity or support.</p>
+            </div>
+            <div className="space-y-2 border-l-4 border-destructive bg-danger-soft p-3">
+              <h4 className="font-semibold text-destructive">When referral or urgent medical assessment is needed</h4>
+              <p>{detail.referral}</p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="font-semibold text-primary">Further learning and references</h4>
+              <ul className="list-disc space-y-2 pl-5">
+                {detail.references.map((reference) => (
+                  <li key={reference.url}>
+                    <a href={reference.url} target="_blank" rel="noopener noreferrer" className="text-accent underline underline-offset-2">{reference.title}</a>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-muted-foreground">These sources cover selected conditions and principles, not every aspect of the specialty. International guidance must be considered alongside Nigerian professional scope and local referral services.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   );
 }
