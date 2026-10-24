@@ -126,13 +126,70 @@ const quiz = [
 const scale = ["Not really", "Somewhat", "Very much"];
 
 const faqs = [
-  { q: "What do physiotherapists do?", a: "They assess movement and physical function, explain problems, agree goals and use exercise, education and other physical approaches to help people move and function better." },
-  { q: "Where do physiotherapists work?", a: "Hospitals, private clinics, rehabilitation centres, sports teams, communities and homes, universities, workplaces and digital health services." },
-  { q: "How do I study physiotherapy in Nigeria?", a: "Apply through JAMB to a university offering an approved physiotherapy programme. Check the current subject combination, cut-off marks and programme details on official JAMB and university sources." },
-  { q: "Are clinical placements and registration required?", a: "Supervised clinical training is part of physiotherapy education, and practising requires registration with the MRTB. Confirm current internship and licensing requirements directly with the MRTB." },
-  { q: "How is physiotherapy different from related professions?", a: "Physiotherapy focuses on movement and physical function. Doctors diagnose and manage disease and prescribe medicines, nurses provide ongoing clinical care, and occupational therapists focus on participation in daily activities. They often work together." },
-  { q: "What career options exist after qualification?", a: "Clinical practice in different specialties, sports, community work, teaching and research, workplace health, management and entrepreneurship. Many pursue further study and continuing professional development." },
-  { q: "What skills help physiotherapy students?", a: "Interest in science, communication and empathy, problem-solving, practical hand skills, time management, teamwork and a commitment to ongoing learning." },
+{
+q: "What do physiotherapists do?",
+a: "Physiotherapists assess movement, physical function and activity limitations. They work with people to understand their problems, agree meaningful goals and develop appropriate rehabilitation plans. Interventions may include therapeutic exercise, movement training, education and other evidence-informed physical approaches.",
+},
+{
+q: "What conditions can physiotherapy help with?",
+a: "Physiotherapy may help people experiencing back and neck pain, joint problems, sports injuries, stroke-related movement difficulties, some neurological conditions, recovery after surgery, breathing-related conditions and challenges with balance or mobility. The appropriate approach depends on the person's assessment, diagnosis where relevant, safety and individual needs.",
+},
+{
+q: "Do I need a doctor's referral before seeing a physiotherapist in Nigeria?",
+a: "Referral arrangements can depend on the healthcare facility, payment or insurance arrangements, the person's condition and applicable professional requirements. Contact your chosen facility to confirm its policy. New, severe or unexplained symptoms may need medical assessment before or alongside physiotherapy.",
+},
+{
+q: "Is physiotherapy painful?",
+a: "Not every physiotherapy intervention is painful. Some exercises or movements may cause temporary discomfort, depending on the condition and stage of recovery. Your physiotherapist should explain what to expect, monitor your response and adjust the plan when necessary. Tell the clinician if pain becomes severe, unusual or concerning.",
+},
+{
+q: "What happens during a physiotherapy assessment?",
+a: "The physiotherapist usually asks about your symptoms, medical history, daily activities and goals. Depending on the problem, the assessment may include observing movement, checking strength, mobility, balance or function, and performing relevant clinical tests. The findings help guide an appropriate plan, and you should have an opportunity to ask questions.",
+},
+{
+q: "How many physiotherapy sessions will I need?",
+a: "There is no single number of sessions that suits everyone. The number and frequency depend on the condition, severity, goals, progress, other health factors and available services. Your physiotherapist can review your response over time and discuss the plan with you.",
+},
+{
+q: "Can I do physiotherapy exercises at home?",
+a: "Many rehabilitation programmes include exercises or activity advice for home, where appropriate. Follow instructions tailored to your needs, use the recommended technique and ask for clarification if you are unsure. Do not continue an activity that causes severe or unusual symptoms without seeking appropriate advice.",
+},
+{
+q: "When should I seek urgent medical attention instead of waiting for physiotherapy?",
+a: "Seek urgent medical assessment for warning signs such as sudden facial drooping, new weakness on one side, difficulty speaking, severe chest pain, severe breathing difficulty or a major injury. New bladder or bowel control problems with back pain, numbness around the groin, or rapidly worsening limb weakness also require urgent assessment. Do not delay emergency care while waiting for a physiotherapy appointment.",
+},
+{
+q: "Where do physiotherapists work?",
+a: "Physiotherapists work in public and private hospitals, outpatient clinics, rehabilitation centres, sports settings, communities, patients' homes, universities, research, occupational health and other appropriate services. Opportunities vary by location, experience and available positions.",
+},
+{
+q: "How do I study physiotherapy in Nigeria?",
+a: "Start by identifying universities offering Physiotherapy and checking their current admission requirements. Verify the relevant JAMB UTME subject combination, O'Level requirements, cut-off marks and any additional university conditions for your intended admission year. Use official JAMB and university sources rather than relying only on old admission adverts or social media posts.",
+},
+{
+q: "What should I check before choosing a physiotherapy programme?",
+a: "Confirm that the programme is appropriately approved and accredited through the relevant official bodies. Review admission requirements, curriculum, practical training, clinical placement arrangements, total study costs and the university's guidance on the pathway to professional registration. Requirements and programme status should be checked using current official information.",
+},
+{
+q: "Are clinical placements and professional registration important?",
+a: "Supervised clinical education is an important part of physiotherapy training. Graduates must also satisfy the applicable professional requirements before practising. Confirm the current internship, registration and practice requirements directly with the Medical Rehabilitation Therapists (Registration) Board of Nigeria (MRTB) and your institution.",
+},
+{
+q: "How is physiotherapy different from medicine, nursing and occupational therapy?",
+a: "Physiotherapy focuses strongly on movement, physical function and rehabilitation. Medicine involves diagnosing and managing disease and may include prescribing medicines. Nursing includes ongoing clinical care and patient support. Occupational therapy focuses on helping people participate in everyday activities. These professions have distinct responsibilities and often work together.",
+},
+{
+q: "What career options exist after qualifying as a physiotherapist?",
+a: "Potential pathways include clinical practice, different areas of rehabilitation, sports, community services, teaching, research, occupational health, management and entrepreneurship. Career progression depends on experience, further training, professional requirements and available opportunities; no particular job or income is guaranteed.",
+},
+{
+q: "What skills help physiotherapy students and early-career practitioners?",
+a: "Useful skills include understanding science, communicating clearly, listening with empathy, solving problems, working in teams, documenting accurately and thinking critically about evidence. Practical competence, professional boundaries, reflection and a commitment to continuing professional development are also important.",
+},
+{
+q: "How can I find a qualified physiotherapist in Nigeria?",
+a: "You can contact a recognised hospital, rehabilitation service or professional healthcare facility and ask about its physiotherapy department. Verify the practitioner's registration and professional standing through the appropriate official regulatory channels. Ask about the clinician's experience with your particular concern and how the service handles assessment, follow-up and referrals.",
+},
 ];
 
 const references = [
