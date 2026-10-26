@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, Disclaimer } from "@/components/SiteLayout";
 
-export const Route = createFileRoute("/conditions/neck-pain")({
+export const Route = createFileRoute("/connditions/neck-pain")({
   component: NeckPainPage,
 });
 
