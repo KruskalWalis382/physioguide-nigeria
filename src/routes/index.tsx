@@ -1,311 +1,74 @@
-
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, ArrowUpRight, Activity, BookOpen, GraduationCap, ShieldCheck, MoveUpRight, Dumbbell, HeartPulse, CircleHelp, LockKeyhole } from "lucide-react";
 import { SiteLayout, Disclaimer } from "@/components/SiteLayout";
+import { Button } from "@/components/ui/button";
+import { Reveal, SectionHeading } from "@/components/Aurora";
 import { guides } from "@/lib/guides";
 import { Picture } from "@/components/Picture";
-import hero from "@/assets/hero-physio.jpg";
+import hero from "@/assets/aurora-movement.jpg";
+import physio from "@/assets/hero-physio.jpg";
 import back from "@/assets/guide-back.jpg";
 import knee from "@/assets/guide-knee.jpg";
 import neck from "@/assets/guide-neck.jpg";
 import workoutImg from "@/assets/workout-hero.jpg";
 import deskImg from "@/assets/ergo-desk.jpg";
 
-const guideImg: Record<string, string> = {
-  "low-back-pain": back,
-  "knee-pain": knee,
-  "neck-pain": neck,
-};
-
+const guideImg: Record<string, string> = { "low-back-pain": back, "knee-pain": knee, "neck-pain": neck };
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "PhysioGuide Nigeria — Explore, Learn and Understand Health" },
-      {
-        name: "description",
-        content:
-          "Discover physiotherapy careers, build clinical knowledge, and explore evidence-informed health education for Nigerians.",
-      },
-      { property: "og:title", content: "PhysioGuide Nigeria" },
-      {
-        property: "og:description",
-        content:
-          "One platform connecting physiotherapy career discovery, clinical learning, and public health education.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-    ],
-  }),
+  head: () => ({ meta: [
+    { title: "PhysioGuide Nigeria — Movement, Knowledge & Health" },
+    { name: "description", content: "Explore physiotherapy, understand common muscle and joint pain, and discover movement education and safety tools for Nigeria." },
+    { property: "og:title", content: "PhysioGuide Nigeria — Movement, Knowledge & Health" },
+    { property: "og:description", content: "Physiotherapy career discovery, clinical learning, and public health education for Nigeria." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
   component: Index,
 });
-
 const pathways = [
-  {
-    number: "01",
-    eyebrow: "CAREER DISCOVERY",
-    title: "Explore Physiotherapy",
-    description:
-      "Discover what physiotherapists do, where they work, and the opportunities the profession offers in Nigeria.",
-    action: "Discover the profession",
-    href: "/about" as const,
-    style: "border-t-4 border-t-primary",
-  },
-  {
-    number: "02",
-    eyebrow: "PROFESSIONAL LEARNING",
-    title: "Learn Physiotherapy",
-    description:
-      "Build your understanding of anatomy, movement, clinical assessment, rehabilitation, and evidence-informed practice.",
-    action: "Explore clinical topics",
-    href: "/learning" as const,
-    style: "border-t-4 border-t-accent",
-  },
-  {
-    number: "03",
-    eyebrow: "PUBLIC HEALTH EDUCATION",
-    title: "Conditions & Health",
-    description:
-      "Understand common muscle and joint conditions, explore general self-care, and learn when to seek professional help.",
-    action: "Explore health guides",
-    href: "/#health-guides" as const,
-    style: "border-t-4 border-t-primary",
-  },
-];
-
-const extra = [
-  {
-    to: "/checker",
-    title: "Safety checker",
-    short: "Review warning signs and understand when to seek medical care.",
-  },
-  {
-    to: "/movement",
-    title: "Gentle movement",
-    short: "Explore simple movement ideas and learn when to stop.",
-  },
-  {
-    to: "/workout",
-    title: "Home workout planner",
-    short: "Build a weekly activity plan based on your selected preferences.",
-  },
-  {
-    to: "/posture",
-    title: "Everyday habits",
-    short: "Explore desk habits, phone use, lifting, sleep, and daily activity.",
-  },
-  {
-    to: "/faq",
-    title: "Questions",
-    short: "Find answers to common questions about pain and physiotherapy.",
-  },
+  { number: "01", icon: GraduationCap, title: "Explore the profession", category: "CAREER DISCOVERY", description: "Discover what physiotherapists do, where they work, and the opportunities the profession offers in Nigeria.", to: "/about" },
+  { number: "02", icon: BookOpen, title: "Build your knowledge", category: "PROFESSIONAL LEARNING", description: "Build your understanding of anatomy, movement, clinical assessment, rehabilitation, and evidence-informed practice.", to: "/learning" },
+  { number: "03", icon: Activity, title: "Understand your health", category: "CONDITIONS & HEALTH", description: "Understand common muscle and joint conditions, explore general self-care, and learn when to seek professional help.", to: "/conditions" },
 ] as const;
 
 function Index() {
-  return (
-    <SiteLayout>
-      <section className="grid items-center gap-6 sm:gap-8 md:grid-cols-2">
-        <div className="space-y-5">
-          <p className="text-sm font-semibold uppercase tracking-widest text-accent">
-            Physiotherapy knowledge for everyone
-          </p>
-
-          <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-            Discover physiotherapy. Build knowledge. Understand your health.
-          </h1>
-
-          <p className="text-base leading-7 text-muted-foreground">
-            Whether you are considering a career in physiotherapy, studying the
-            profession, or looking for reliable health information, start here.
-          </p>
-
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a href="#pathways" className="btn btn-accent text-center">
-              Find your pathway
-            </a>
-            <Link
-              to="/checker"
-              className="btn btn-outline text-center"
-            >
-              Visit the safety checker
-            </Link>
-          </div>
-
-          <p className="text-sm text-muted-foreground">
-            Clear explanations. Evidence-informed learning. A Nigerian
-            perspective.
-          </p>
+  return <SiteLayout appearance="aurora">
+    <section className="home-hero" aria-labelledby="home-title">
+      <img className="hero-image" src={hero} alt="A Nigerian woman performing a standing shoulder mobility stretch in a glass studio" width={1920} height={1024} fetchPriority="high" />
+      <div className="hero-shade" aria-hidden="true" />
+      <div className="hero-inner">
+        <div className="hero-copy">
+          <p className="eyebrow hero-enter"><span className="status-dot" /> KNOWLEDGE THAT MOVES YOU</p>
+          <h1 id="home-title" className="hero-enter">PhysioGuide<br /><span>Nigeria.</span></h1>
+          <p className="hero-intro hero-enter">Understand your body.<br />Explore the science of movement.</p>
+          <p className="hero-description hero-enter">A space for everyone to discover physiotherapy, build knowledge, and make informed decisions about their health.</p>
+          <div className="hero-actions hero-enter"><Button asChild variant="aurora" size="lg"><Link to="/conditions">Explore conditions <ArrowUpRight aria-hidden="true" /></Link></Button><Button asChild variant="glass" size="lg"><Link to="/checker"><ShieldCheck aria-hidden="true" /> Safety checker</Link></Button></div>
+          <p className="hero-note hero-enter"><LockKeyhole size={14} aria-hidden="true" /> Educational. Private. Free to explore.</p>
         </div>
-
-        <Picture
-          src={hero}
-          alt="A physiotherapist helping a patient with a knee exercise"
-          priority
-          className="w-full rounded-xl"
-        />
-      </section>
-
-      <section id="pathways" className="mt-14 space-y-5 scroll-mt-6">
-        <div className="max-w-2xl space-y-2">
-          <p className="text-sm font-semibold uppercase tracking-widest text-accent">
-            Start here
-          </p>
-          <h2 className="text-2xl font-bold sm:text-3xl">
-            One platform. Three pathways.
-          </h2>
-          <p className="text-muted-foreground leading-7">
-            Find information that matches your interests, whether you are
-            exploring the profession, developing your clinical knowledge, or
-            learning about your health.
-          </p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-3">
-          {pathways.map((pathway) => (
-            <article
-              key={pathway.number}
-              className={`card flex h-full flex-col gap-3 p-5 transition-shadow hover:shadow-md ${pathway.style}`}
-            >
-              <span className="text-sm font-bold tracking-widest text-accent">
-                {pathway.number}
-              </span>
-
-              <p className="text-xs font-semibold tracking-wide text-muted-foreground">
-                {pathway.eyebrow}
-              </p>
-
-              <h3 className="text-xl font-bold">{pathway.title}</h3>
-
-              <p className="flex-1 text-sm leading-6 text-muted-foreground">
-                {pathway.description}
-              </p>
-
-              {pathway.href === "/#health-guides" ? (
-                <a
-                  href="#health-guides"
-                  className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-accent"
-                >
-                  {pathway.action} <span aria-hidden="true">→</span>
-                </a>
-              ) : (
-                <Link
-                  to={pathway.href}
-                  className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-accent"
-                >
-                  {pathway.action} <span aria-hidden="true">→</span>
-                </Link>
-              )}
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="health-guides" className="mt-14 space-y-5 scroll-mt-6">
-        <div className="max-w-2xl space-y-2">
-          <p className="text-sm font-semibold uppercase tracking-widest text-accent">
-            Conditions & health
-          </p>
-          <h2 className="text-2xl font-bold sm:text-3xl">
-            Understand common conditions
-          </h2>
-          <p className="leading-7 text-muted-foreground">
-            Explore clear explanations of common muscle and joint problems,
-            including possible causes, relevant anatomy, risk factors, and
-            evidence-informed rehabilitation.
-          </p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {guides.map((guide) => (
-            <Link
-              key={guide.slug}
-              to="/guides/$slug"
-              params={{ slug: guide.slug }}
-              className="card block overflow-hidden p-0 transition-shadow hover:shadow-md"
-            >
-              <Picture
-                src={guideImg[guide.slug] ?? hero}
-                alt={`Illustration for ${guide.title}`}
-                className="w-full"
-              />
-              <div className="space-y-2 p-4">
-                <h3 className="text-lg font-bold">{guide.title}</h3>
-                <p className="text-sm leading-6 text-muted-foreground">
-                  {guide.short}
-                </p>
-                <span className="inline-block pt-1 text-sm font-semibold text-accent">
-                  Read guide <span aria-hidden="true">→</span>
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section id="tools" className="mt-14 space-y-5 scroll-mt-6">
-        <div className="max-w-2xl space-y-2">
-          <p className="text-sm font-semibold uppercase tracking-widest text-accent">
-            Practical resources
-          </p>
-          <h2 className="text-2xl font-bold sm:text-3xl">
-            Learn, move, and make informed decisions
-          </h2>
-          <p className="leading-7 text-muted-foreground">
-            Explore the tools and educational resources already available on
-            PhysioGuide Nigeria.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3">
-          <Picture
-            src={workoutImg}
-            alt="Woman exercising at home"
-            className="w-full rounded-lg"
-          />
-          <Picture
-            src={deskImg}
-            alt="Person working at a desk"
-            className="w-full rounded-lg"
-          />
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {extra.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className="card block transition-shadow hover:shadow-md"
-            >
-              <h3 className="text-lg font-bold">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                {item.short}
-              </p>
-              <span className="mt-3 inline-block text-sm font-semibold text-accent">
-                Explore resource <span aria-hidden="true">→</span>
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-14 rounded-xl border bg-card p-5 sm:p-7">
-        <h2 className="text-xl font-bold">
-          Health information should help you make informed decisions.
-        </h2>
-        <p className="mt-3 leading-7 text-muted-foreground">
-          PhysioGuide Nigeria provides educational information, not a personal
-          diagnosis or a substitute for assessment by a qualified health
-          professional. Seek appropriate medical care when symptoms are
-          concerning or urgent.
-        </p>
-        <div className="mt-5">
-          <Link to="/checker" className="btn btn-accent">
-            Review warning signs
-          </Link>
-        </div>
-      </section>
-
-      <div className="mt-10">
-        <Disclaimer />
+        <div className="hero-caption"><Activity size={20} aria-hidden="true" /><div><span>THE HUMAN POTENTIAL</span><p>Made for movement.</p></div></div>
       </div>
-    </SiteLayout>
-  );
+      <div className="hero-bottom"><span>FOR THE CURIOUS. FOR THE LEARNERS. FOR EVERYONE.</span><a href="#pathways">Discover your pathway <ArrowRight size={16} aria-hidden="true" /></a></div>
+    </section>
+
+    <section id="pathways" className="home-section pathway-section">
+      <Reveal><div className="section-top"><SectionHeading eyebrow="YOUR JOURNEY STARTS HERE" title="Different goals. One place to begin." /><p className="section-aside">For the people moving forward.<br />And the people helping them get there.</p></div>
+      <div className="pathway-grid">{pathways.map(p => <Link key={p.number} to={p.to} className="pathway glass-surface"><div className="pathway-top"><p.icon size={26} aria-hidden="true" /><span>{p.number}</span></div><p className="eyebrow">{p.category}</p><h3>{p.title}</h3><p className="text-muted-foreground">{p.description}</p><span className="pathway-arrow"><ArrowUpRight size={21} aria-hidden="true" /><span className="sr-only">Explore {p.title}</span></span></Link>)}</div></Reveal>
+    </section>
+
+    <section id="health-guides" className="home-section conditions-section">
+      <Reveal><div className="section-top"><SectionHeading eyebrow="A LITTLE UNDERSTANDING GOES A LONG WAY" title="Your body. Better understood.">Clear explanations of common muscle and joint problems, with practical information and guidance on when to seek care.</SectionHeading><Button asChild variant="glass"><Link to="/conditions">All conditions <ArrowUpRight aria-hidden="true" /></Link></Button></div>
+      <div className="guide-grid">{guides.map((g, i) => <Link key={g.slug} to="/guides/$slug" params={{ slug: g.slug }} className="home-guide glass-surface"><div className="guide-photo"><Picture src={guideImg[g.slug] ?? physio} alt={`Educational photograph accompanying the ${g.title} guide`} ratio="aspect-[4/3]" /><span className="photo-label">CONDITION GUIDE / 0{i + 1}</span><span className="photo-arrow"><ArrowUpRight size={20} aria-hidden="true" /></span></div><div className="guide-copy"><h3>{g.title}</h3><p>{g.short}</p><span className="text-accent">Explore the guide <ArrowRight size={16} aria-hidden="true" /></span></div></Link>)}</div></Reveal>
+    </section>
+
+    <section id="tools" className="home-section tools-section">
+      <Reveal><SectionHeading eyebrow="SMALL STEPS. MORE POSSIBILITIES." title="Put knowledge into motion.">Explore movement, everyday habits, and tools for more informed decisions.</SectionHeading>
+      <div className="tool-grid">
+        <Link to="/workout" className="feature-tool"><Picture src={workoutImg} alt="Woman exercising at home" ratio="aspect-[5/4]" /><div className="feature-tool-copy"><Dumbbell size={24} aria-hidden="true" /><p className="eyebrow">YOUR SPACE. YOUR PACE.</p><h3>Build your body.<br />No gym required.</h3><span>Open workout planner <ArrowUpRight size={18} aria-hidden="true" /></span></div></Link>
+        <div className="tool-column"><Link to="/movement" className="compact-tool glass-surface"><MoveUpRight size={25} aria-hidden="true" /><div><h3>Movement & exercise</h3><p>Simple movement ideas, with clear safety information.</p></div><ArrowUpRight size={20} aria-hidden="true" /></Link><Link to="/posture" className="habits-tool glass-surface"><Picture src={deskImg} alt="Man working at a desk" ratio="aspect-square" /><div><p className="eyebrow">EVERYDAY WELLBEING</p><h3>Better habits.<br />Every day.</h3><span>Explore healthy habits <ArrowUpRight size={16} aria-hidden="true" /></span></div></Link><Link to="/faq" className="compact-tool glass-surface"><CircleHelp size={25} aria-hidden="true" /><div><h3>Questions, answered.</h3><p>Common questions about pain and physiotherapy.</p></div><ArrowUpRight size={20} aria-hidden="true" /></Link></div>
+      </div></Reveal>
+    </section>
+
+    <section className="safety-band"><Reveal className="safety-inner"><div className="safety-symbol"><HeartPulse size={38} aria-hidden="true" /></div><div><p className="eyebrow">KNOW WHEN TO SEEK HELP</p><h2>Good information.<br />Safer decisions.</h2><p>Review warning signs and understand when to seek medical care. Our educational safety checker is not a diagnosis or a replacement for professional assessment.</p></div><div className="safety-action"><Button asChild variant="aurora" size="lg"><Link to="/checker">Review warning signs <ArrowUpRight aria-hidden="true" /></Link></Button><span><LockKeyhole size={14} aria-hidden="true" /> Your answers stay on your device.</span></div></Reveal></section>
+    <div className="home-section home-disclaimer"><Disclaimer /></div>
+  </SiteLayout>;
 }

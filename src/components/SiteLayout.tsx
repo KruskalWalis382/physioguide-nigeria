@@ -1,80 +1,66 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
+import { ArrowUpRight, Menu, X, ShieldCheck, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const nav: { to: "/" | "/guides/$slug" | "/checker" | "/movement" | "/workout" | "/posture" | "/faq" | "/contact"; label: string; params?: { slug: string } }[] = [
+const primaryNav = [
   { to: "/", label: "Home" },
-  { to: "/guides/$slug", params: { slug: "low-back-pain" }, label: "Back pain" },
-  { to: "/guides/$slug", params: { slug: "knee-pain" }, label: "Knee pain" },
-  { to: "/guides/$slug", params: { slug: "neck-pain" }, label: "Neck pain" },
-  { to: "/checker", label: "Safety checker" },
-  { to: "/movement", label: "Movement" },
-  { to: "/workout", label: "Workout" },
-  { to: "/posture", label: "Habits" },
-  { to: "/faq", label: "FAQ" },
+  { to: "/conditions", label: "Conditions" },
+  { to: "/about", label: "Explore physiotherapy" },
+  { to: "/learning", label: "Learning" },
+] as const;
+const resources = [
+  { to: "/movement", label: "Movement & exercise" },
+  { to: "/workout", label: "Workout planner" },
+  { to: "/posture", label: "Healthy habits" },
+  { to: "/faq", label: "FAQs" },
   { to: "/contact", label: "Contact" },
+] as const;
+const guideLinks = [
+  { slug: "low-back-pain", label: "Back pain" },
+  { slug: "knee-pain", label: "Knee pain" },
+  { slug: "neck-pain", label: "Neck pain" },
 ];
 
 export function Logo() {
-  return (
-    <Link to="/" className="flex shrink-0 items-center" aria-label="PhysioGuide Nigeria home">
-      <img src="/logo-horizontal-light.svg" alt="PhysioGuide Nigeria logo" width={300} height={64} className="block h-10 w-auto sm:h-11" />
-    </Link>
-  );
+  return <Link to="/" className="site-logo" aria-label="PhysioGuide Nigeria home"><img src="/logo-horizontal-light.svg" alt="PhysioGuide Nigeria logo" width={300} height={64} /></Link>;
 }
 
-export function SiteLayout({ children }: { children: ReactNode }) {
+export function SiteLayout({ children, appearance = "reading" }: { children: ReactNode; appearance?: "reading" | "aurora" }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="flex min-h-screen flex-col">
-      <a href="#main" className="sr-only focus:not-sr-only focus:p-2">Skip to content</a>
-      <header className="sticky top-0 z-20 bg-primary">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+    <div className={`site-shell ${appearance === "aurora" ? "aurora-theme" : "reading-theme"}`}>
+      <a href="#main" className="skip-link">Skip to content</a>
+      <header className="site-header site-chrome">
+        <div className="header-inner">
           <Logo />
-          <button
-            className="btn rounded-lg border border-primary-foreground/40 text-primary-foreground lg:hidden"
-            aria-expanded={open}
-            aria-controls="main-nav"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? "Close" : "Menu"}
-          </button>
-          <nav className="hidden lg:block" aria-label="Main">
-            <ul className="flex gap-1">
-              {nav.map((n) => (
-                <li key={n.label}>
-                  <Link to={n.to} params={n.params as never} className="rounded-md px-2 py-2 text-sm text-primary-foreground/85 hover:text-primary-foreground" activeProps={{ className: "underline underline-offset-4 text-primary-foreground" }} activeOptions={{ exact: true }}>
-                    {n.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <nav className="desktop-nav" aria-label="Main">
+            {primaryNav.map(n => <Link key={n.to} to={n.to} className="nav-link" activeProps={{ className: "nav-link is-active" }} activeOptions={{ exact: true }}>{n.label}</Link>)}
+            <details className="resource-menu">
+              <summary className="nav-link">Resources <ChevronDown size={14} aria-hidden="true" /></summary>
+              <div className="resource-dropdown">
+                {resources.map(n => <Link key={n.to} to={n.to} className="nav-link" onClick={e => e.currentTarget.closest("details")?.removeAttribute("open")}>{n.label}</Link>)}
+                <div className="dropdown-divider" />
+                {guideLinks.map(g => <Link key={g.slug} to="/guides/$slug" params={{ slug: g.slug }} className="nav-link" onClick={e => e.currentTarget.closest("details")?.removeAttribute("open")}>{g.label}</Link>)}
+              </div>
+            </details>
           </nav>
+          <Button asChild variant="glass" className="header-checker"><Link to="/checker"><ShieldCheck aria-hidden="true" /> Safety checker <ArrowUpRight aria-hidden="true" /></Link></Button>
+          <Button variant="ghost" size="icon" className="mobile-toggle" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
         </div>
-        {open && (
-          <nav id="main-nav" className="border-t border-primary-foreground/20 lg:hidden" aria-label="Main">
-            <ul className="mx-auto max-w-5xl px-2 py-2">
-              {nav.map((n) => (
-                <li key={n.label}>
-                  <Link to={n.to} params={n.params as never} onClick={() => setOpen(false)} className="block rounded-md px-3 py-3 text-primary-foreground" activeProps={{ className: "bg-primary-foreground/10 font-semibold" }} activeOptions={{ exact: true }}>
-                    {n.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )}
+        {open && <nav id="main-nav" className="mobile-nav" aria-label="Main">
+          {[...primaryNav, { to: "/checker", label: "Safety checker" } as const, ...resources].map(n => <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="nav-link" activeProps={{ className: "nav-link is-active" }} activeOptions={{ exact: true }}>{n.label}<ArrowUpRight size={16} aria-hidden="true" /></Link>)}
+          {guideLinks.map(g => <Link key={g.slug} to="/guides/$slug" params={{ slug: g.slug }} onClick={() => setOpen(false)} className="nav-link">{g.label}<ArrowUpRight size={16} aria-hidden="true" /></Link>)}
+        </nav>}
       </header>
-
-      <main id="main" className="mx-auto w-full max-w-3xl flex-1 px-4 py-8">{children}</main>
-
-      <footer className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-3xl space-y-3 px-4 py-8 text-sm">
-          <p className="font-bold">PhysioGuide Nigeria</p>
-          <p className="opacity-90">
-            This website provides general educational information about common muscle and joint pain. It does not diagnose, treat or replace assessment by a qualified health professional such as a physiotherapist or doctor. In an emergency, go to the nearest hospital emergency department immediately.
-          </p>
-          <p className="opacity-90">We do not collect your name, contact details or health answers. The safety checker runs only on your phone and nothing is sent anywhere.</p>
-          <p className="opacity-75">© {new Date().getFullYear()} PhysioGuide Nigeria</p>
+      <main id="main" className={appearance === "aurora" ? "homepage-main" : "reading-main"}>{children}</main>
+      <footer className="site-footer site-chrome">
+        <div className="footer-inner">
+          <div className="footer-top"><Logo /><p>Movement. Knowledge. Possibility.</p><Link to="/contact" className="footer-contact">Contact <ArrowUpRight size={16} aria-hidden="true" /></Link></div>
+          <div className="footer-links">{[...primaryNav.slice(1), ...resources, { to: "/checker", label: "Safety checker" } as const].map(n => <Link key={n.to} to={n.to}>{n.label}</Link>)}</div>
+          <p>This website provides general educational information about common muscle and joint pain. It does not diagnose, treat or replace assessment by a qualified health professional such as a physiotherapist or doctor. In an emergency, go to the nearest hospital emergency department immediately.</p>
+          <p>We do not collect your name, contact details or health answers. The safety checker runs only on your phone and nothing is sent anywhere.</p>
+          <div className="footer-bottom"><span>© {new Date().getFullYear()} PhysioGuide Nigeria</span><span>Education, not diagnosis.</span></div>
         </div>
       </footer>
     </div>
@@ -82,9 +68,5 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 }
 
 export function Disclaimer() {
-  return (
-    <p className="rounded-lg border-l-4 border-accent bg-teal-soft p-4 text-sm">
-      <strong>Educational information only.</strong> This is not a diagnosis or treatment plan. If you are worried, please see a physiotherapist, doctor or other qualified health professional.
-    </p>
-  );
+  return <p className="rounded-lg border-l-4 border-accent bg-teal-soft p-4 text-sm"><strong>Educational information only.</strong> This is not a diagnosis or treatment plan. If you are worried, please see a physiotherapist, doctor or other qualified health professional.</p>;
 }
