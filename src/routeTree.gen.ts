@@ -12,12 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as CheckerRouteImport } from './routes/checker'
+import { Route as ConditionsRouteImport } from './routes/conditions'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as LearningRouteImport } from './routes/learning'
 import { Route as MovementRouteImport } from './routes/movement'
 import { Route as PostureRouteImport } from './routes/posture'
 import { Route as WorkoutRouteImport } from './routes/workout'
+import { Route as ConnditionsNeckPainRouteImport } from './routes/connditions.neck-pain'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -33,6 +35,11 @@ const AboutRoute = AboutRouteImport.update({
 const CheckerRoute = CheckerRouteImport.update({
   id: '/checker',
   path: '/checker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConditionsRoute = ConditionsRouteImport.update({
+  id: '/conditions',
+  path: '/conditions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -65,6 +72,11 @@ const WorkoutRoute = WorkoutRouteImport.update({
   path: '/workout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConnditionsNeckPainRoute = ConnditionsNeckPainRouteImport.update({
+  id: '/connditions/neck-pain',
+  path: '/connditions/neck-pain',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuidesSlugRoute = GuidesSlugRouteImport.update({
   id: '/guides/$slug',
   path: '/guides/$slug',
@@ -75,24 +87,28 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/checker': typeof CheckerRoute
+  '/conditions': typeof ConditionsRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/learning': typeof LearningRoute
   '/movement': typeof MovementRoute
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
+  '/connditions/neck-pain': typeof ConnditionsNeckPainRoute
   '/guides/$slug': typeof GuidesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/checker': typeof CheckerRoute
+  '/conditions': typeof ConditionsRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/learning': typeof LearningRoute
   '/movement': typeof MovementRoute
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
+  '/connditions/neck-pain': typeof ConnditionsNeckPainRoute
   '/guides/$slug': typeof GuidesSlugRoute
 }
 export interface FileRoutesById {
@@ -100,12 +116,14 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/checker': typeof CheckerRoute
+  '/conditions': typeof ConditionsRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/learning': typeof LearningRoute
   '/movement': typeof MovementRoute
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
+  '/connditions/neck-pain': typeof ConnditionsNeckPainRoute
   '/guides/$slug': typeof GuidesSlugRoute
 }
 export interface FileRouteTypes {
@@ -114,36 +132,42 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/checker'
+    | '/conditions'
     | '/contact'
     | '/faq'
     | '/learning'
     | '/movement'
     | '/posture'
     | '/workout'
+    | '/connditions/neck-pain'
     | '/guides/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/checker'
+    | '/conditions'
     | '/contact'
     | '/faq'
     | '/learning'
     | '/movement'
     | '/posture'
     | '/workout'
+    | '/connditions/neck-pain'
     | '/guides/$slug'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/checker'
+    | '/conditions'
     | '/contact'
     | '/faq'
     | '/learning'
     | '/movement'
     | '/posture'
     | '/workout'
+    | '/connditions/neck-pain'
     | '/guides/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -151,12 +175,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CheckerRoute: typeof CheckerRoute
+  ConditionsRoute: typeof ConditionsRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   LearningRoute: typeof LearningRoute
   MovementRoute: typeof MovementRoute
   PostureRoute: typeof PostureRoute
   WorkoutRoute: typeof WorkoutRoute
+  ConnditionsNeckPainRoute: typeof ConnditionsNeckPainRoute
   GuidesSlugRoute: typeof GuidesSlugRoute
 }
 
@@ -181,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/checker'
       fullPath: '/checker'
       preLoaderRoute: typeof CheckerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conditions': {
+      id: '/conditions'
+      path: '/conditions'
+      fullPath: '/conditions'
+      preLoaderRoute: typeof ConditionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -225,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/connditions/neck-pain': {
+      id: '/connditions/neck-pain'
+      path: '/connditions/neck-pain'
+      fullPath: '/connditions/neck-pain'
+      preLoaderRoute: typeof ConnditionsNeckPainRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guides/$slug': {
       id: '/guides/$slug'
       path: '/guides/$slug'
@@ -239,12 +279,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CheckerRoute: CheckerRoute,
+  ConditionsRoute: ConditionsRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   LearningRoute: LearningRoute,
   MovementRoute: MovementRoute,
   PostureRoute: PostureRoute,
   WorkoutRoute: WorkoutRoute,
+  ConnditionsNeckPainRoute: ConnditionsNeckPainRoute,
   GuidesSlugRoute: GuidesSlugRoute,
 }
 export const routeTree = rootRouteImport

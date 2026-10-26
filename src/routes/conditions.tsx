@@ -127,6 +127,14 @@ const regions = [
 ];
 
 export const Route = createFileRoute("/conditions")({
+  head: () => ({ meta: [
+    { title: "Explore Conditions — PhysioGuide Nigeria" },
+    { name: "description", content: "Explore muscle, joint and movement conditions by body region." },
+    { property: "og:title", content: "Explore Conditions — PhysioGuide Nigeria" },
+    { property: "og:description", content: "Search the educational condition library by body region or condition." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: ConditionsPage,
 });
 

@@ -5,6 +5,10 @@ import { SiteLayout, Disclaimer } from "@/components/SiteLayout";
 export const Route = createFileRoute("/learning")({
   head: () => ({
     meta: [
+      { property: "og:title", content: "Learn Physiotherapy — PhysioGuide Nigeria" },
+      { property: "og:description", content: "Anatomy, assessment, rehabilitation and professional learning for physiotherapy students." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Learn Physiotherapy — PhysioGuide Nigeria" },
       {
         name: "description",

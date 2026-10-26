@@ -1,5 +1,7 @@
-# Specialty-card improvement
+# Aurora Glass redesign — first milestone
 
-- [ ] Add distinct educational detail and authoritative learning links for all eight existing specialties.
-- [ ] Add independent accessible expand/collapse buttons on the existing about page, preserving summaries and images.
-- [ ] Run automated tests and verify interactions, navigation and phone/desktop layouts; do not deploy.
+- [x] Audit architecture, routes, interactive features, clinical sources and baseline tests.
+- [ ] Establish opt-in Aurora tokens and reusable visual primitives without darkening legacy page bodies.
+- [ ] Redesign existing homepage and shared navigation/footer; preserve every feature and clinical wording.
+- [ ] Verify tests, all routes, key flows and phone/tablet/desktop layouts; do not deploy.
+- [ ] Report milestone results and remaining-page scope before proceeding.
