@@ -50,7 +50,7 @@ describe("Low back pain guide layout", () => {
   it("keeps every clinical subsection and reference inside the collapsible details", async () => {
     await renderGuide("low-back-pain");
 
-    const details = document.querySelector("details");
+    const details = document.querySelector("main details");
     expect(details, "clinical content should sit inside a <details> element").not.toBeNull();
     expect(details?.hasAttribute("open"), "clinical content should start collapsed").toBe(false);
 
@@ -76,7 +76,7 @@ describe("Low back pain guide layout", () => {
   it("expands and collapses the clinical details when the summary is clicked", async () => {
     await renderGuide("low-back-pain");
 
-    const details = document.querySelector("details")!;
+    const details = document.querySelector("main details")!;
     fireEvent.click(screen.getByText("Explore the clinical details"));
     expect(details.hasAttribute("open"), "clicking the summary should open the section").toBe(true);
 
@@ -90,7 +90,7 @@ describe("Low back pain guide layout", () => {
     const checker = screen.getByRole("link", { name: "Use the safety checker" });
     const movement = screen.getByRole("link", { name: "Gentle movement ideas" });
     const urgent = Array.from(document.querySelectorAll("h2")).find((h) => h.textContent === "Get urgent medical help if")!;
-    const details = document.querySelector("details")!;
+    const details = document.querySelector("main details")!;
 
     expect(urgent.compareDocumentPosition(checker) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(checker.compareDocumentPosition(details) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
@@ -115,7 +115,7 @@ describe("Other condition guides", () => {
     ]);
     expect(order).toEqual([...order].sort((a, b) => a - b));
 
-    const details = document.querySelector("details")!;
+    const details = document.querySelector("main details")!;
     expect(details.hasAttribute("open")).toBe(false);
     expect(details.textContent).toContain(anatomy);
     expect(details.textContent).not.toContain("lower back");
