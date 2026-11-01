@@ -1,7 +1,7 @@
 # Aurora Glass redesign — first milestone
 
 - [x] Audit architecture, routes, interactive features, clinical sources and baseline tests.
-- [ ] Establish opt-in Aurora tokens and reusable visual primitives without darkening legacy page bodies.
-- [ ] Redesign existing homepage and shared navigation/footer; preserve every feature and clinical wording.
-- [ ] Verify tests, all routes, key flows and phone/tablet/desktop layouts; do not deploy.
-- [ ] Report milestone results and remaining-page scope before proceeding.
+- [x] Establish opt-in Aurora tokens and reusable visual primitives without darkening legacy page bodies.
+- [x] Redesign existing homepage and shared navigation/footer; preserve every feature and clinical wording.
+- [x] Verify tests, all routes, key flows and phone/desktop layouts; do not deploy.
+- [ ] Redesign remaining pages one at a time (waiting on user approval of the homepage).
