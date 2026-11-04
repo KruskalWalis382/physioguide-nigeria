@@ -83,6 +83,10 @@
   --border: oklch(.7 .04 195 / .17);
   --input: oklch(.7 .04 195 / .3);
   --ring: oklch(.83 .13 174);
+  --destructive: oklch(.72 .17 25);
+  --danger-soft: oklch(.26 .06 25);
+  --warning: oklch(.82 .13 80);
+  --warning-soft: oklch(.27 .05 75);
 }
 @layer base {
   * { border-color: var(--border); }
@@ -278,3 +282,11 @@
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Aurora reading pages: glass cards over ambient light, same reading width. */
+.aurora-page { max-width: 64rem; background-image: var(--ambient-light); }
+.aurora-page .card, .aurora-page .bg-card { background: var(--glass); border-color: var(--glass-edge); box-shadow: var(--shadow-glass); backdrop-filter: blur(16px); }
+.aurora-page .card:hover { border-color: var(--accent); box-shadow: var(--shadow-glow); }
+.aurora-page .btn-outline { border-color: var(--glass-edge); color: var(--foreground); }
+.aurora-page .btn-outline:hover { border-color: var(--accent); }
+.aurora-page h1 { background: linear-gradient(100deg, var(--foreground), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
