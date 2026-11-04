@@ -250,7 +250,7 @@ function AboutPage() {
   const low = quiz.filter((_, i) => answers[i] === 0);
 
   return (
-    <SiteLayout>
+    <SiteLayout appearance="aurora-page">
       <article className="space-y-14">
         <header className="space-y-5">
           <Picture src={hero} alt="Physiotherapist working with a patient" priority className="rounded-2xl" ratio="aspect-[16/9]" />

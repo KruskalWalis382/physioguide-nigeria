@@ -4,4 +4,5 @@
 - [x] Establish opt-in Aurora tokens and reusable visual primitives without darkening legacy page bodies.
 - [x] Redesign existing homepage and shared navigation/footer; preserve every feature and clinical wording.
 - [x] Verify tests, all routes, key flows and phone/desktop layouts; do not deploy.
-- [ ] Redesign remaining pages one at a time (waiting on user approval of the homepage).
+- [x] Explore physiotherapy page redesigned.
+- [ ] Redesign remaining pages one at a time (next page waits on user choice).

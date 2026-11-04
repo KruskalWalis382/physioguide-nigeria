@@ -26,10 +26,10 @@ export function Logo() {
   return <Link to="/" className="site-logo" aria-label="PhysioGuide Nigeria home"><img src="/logo-horizontal-light.svg" alt="PhysioGuide Nigeria logo" width={300} height={64} /></Link>;
 }
 
-export function SiteLayout({ children, appearance = "reading" }: { children: ReactNode; appearance?: "reading" | "aurora" }) {
+export function SiteLayout({ children, appearance = "reading" }: { children: ReactNode; appearance?: "reading" | "aurora" | "aurora-page" }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className={`site-shell ${appearance === "aurora" ? "aurora-theme" : "reading-theme"}`}>
+    <div className={`site-shell ${appearance === "reading" ? "reading-theme" : "aurora-theme"}`}>
       <a href="#main" className="skip-link">Skip to content</a>
       <header className="site-header site-chrome">
         <div className="header-inner">
@@ -53,7 +53,7 @@ export function SiteLayout({ children, appearance = "reading" }: { children: Rea
           {guideLinks.map(g => <Link key={g.slug} to="/guides/$slug" params={{ slug: g.slug }} onClick={() => setOpen(false)} className="nav-link">{g.label}<ArrowUpRight size={16} aria-hidden="true" /></Link>)}
         </nav>}
       </header>
-      <main id="main" className={appearance === "aurora" ? "homepage-main" : "reading-main"}>{children}</main>
+      <main id="main" className={appearance === "aurora" ? "homepage-main" : appearance === "aurora-page" ? "reading-main aurora-page" : "reading-main"}>{children}</main>
       <footer className="site-footer site-chrome">
         <div className="footer-inner">
           <div className="footer-top"><Logo /><p>Movement. Knowledge. Possibility.</p><Link to="/contact" className="footer-contact">Contact <ArrowUpRight size={16} aria-hidden="true" /></Link></div>
