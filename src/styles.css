@@ -290,3 +290,9 @@
 .aurora-page .btn-outline { border-color: var(--glass-edge); color: var(--foreground); }
 .aurora-page .btn-outline:hover { border-color: var(--accent); }
 .aurora-page h1 { background: linear-gradient(100deg, var(--foreground), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.checker-aurora .card { transition: border-color .2s, box-shadow .2s, transform .2s; }
+.checker-aurora .card:has(input:checked) { border-color: var(--accent); box-shadow: var(--shadow-glow); }
+.checker-aurora .card:has(input:focus-visible) { outline: 2px solid var(--ring); outline-offset: 2px; }
+.checker-progress { height: .375rem; border-radius: 999px; background: var(--glass); border: 1px solid var(--glass-edge); overflow: hidden; }
+.checker-progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width .4s ease; }
+@media (prefers-reduced-motion: reduce) { .checker-progress span, .checker-aurora .card { transition: none; } }
