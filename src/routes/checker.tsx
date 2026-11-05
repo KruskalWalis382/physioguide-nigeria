@@ -69,14 +69,16 @@ function Checker() {
   const label = (list: Option[], ids: string[]) => list.filter((o) => ids.includes(o.id)).map((o) => o.label);
 
   return (
-    <SiteLayout>
-      <div className="space-y-6">
-        <h1 className="text-3xl">Safety checker</h1>
+    <SiteLayout appearance="aurora-page">
+      <div className="checker-aurora mx-auto max-w-2xl space-y-6">
+        <p className="eyebrow">Private · on your phone</p>
+        <h1 className="text-3xl md:text-4xl">Safety checker</h1>
         {step === 0 && (
           <p className="text-muted-foreground">
             Answer a few questions about warning signs. This tool does <strong>not</strong> diagnose or recommend treatment — it only shows general safety advice. Your answers stay on your phone and are not sent anywhere.
           </p>
         )}
+        <div className="checker-progress" aria-hidden="true"><span style={{ width: `${(Math.min(step, 3) + 1) * 25}%` }} /></div>
         <p className="text-sm font-semibold text-accent" aria-live="polite">
           {step < 3 ? `Step ${step + 1} of 3` : "Your safety information"}
         </p>
