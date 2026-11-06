@@ -116,8 +116,8 @@ function ClinicalSection({ clinical, slug }: { clinical: ClinicalDetails; slug: 
 function GuidePage() {
   const g = Route.useLoaderData();
   return (
-    <SiteLayout>
-      <article className="space-y-6">
+    <SiteLayout appearance="aurora-page">
+      <article className="guide-aurora space-y-6">
         <Picture src={img[g.slug] ?? back} alt={`Person with ${g.title.toLowerCase()}`} priority className="rounded-xl" />
         <h1 className="text-3xl">{g.title}</h1>
         <p>{g.intro}</p>
