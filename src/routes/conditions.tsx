@@ -20,7 +20,7 @@ export const Route = createFileRoute("/conditions")({
 
 function ConditionsPage() {
   const [search, setSearch] = useState("");
-  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+
 
   const filteredRegions = regions
     .map((region) => ({
@@ -58,12 +58,7 @@ function ConditionsPage() {
               <span className="rounded-full border border-white/20 px-4 py-2">
                 10 body regions
               </span>
-              <span className="rounded-full border border-white/20 px-4 py-2">
-                50 conditions to explore
-              </span>
-              <span className="rounded-full border border-white/20 px-4 py-2">
-                Evidence-informed learning
-              </span>
+              
             </div>
           </div>
         </section>
@@ -90,14 +85,6 @@ function ConditionsPage() {
             placeholder="Search conditions or body regions..."
             className="w-full rounded-xl border border-border bg-background px-4 py-3 text-base outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20"
           />
-
-          <p className="text-sm text-muted-foreground" aria-live="polite">
-            {filteredRegions.reduce(
-              (total, region) => total + region.conditions.length,
-              0
-            )}{" "}
-            matching conditions across {filteredRegions.length} regions
-          </p>
         </section>
 
        
