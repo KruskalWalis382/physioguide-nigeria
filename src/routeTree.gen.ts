@@ -19,7 +19,8 @@ import { Route as LearningRouteImport } from './routes/learning'
 import { Route as MovementRouteImport } from './routes/movement'
 import { Route as PostureRouteImport } from './routes/posture'
 import { Route as WorkoutRouteImport } from './routes/workout'
-import { Route as ConnditionsNeckPainRouteImport } from './routes/connditions.neck-pain'
+import { Route as ConditionsRegionRouteImport } from './routes/conditions.$region'
+import { Route as ConditionsNeckPainRouteImport } from './routes/conditions.neck-pain'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -72,10 +73,15 @@ const WorkoutRoute = WorkoutRouteImport.update({
   path: '/workout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ConnditionsNeckPainRoute = ConnditionsNeckPainRouteImport.update({
-  id: '/connditions/neck-pain',
-  path: '/connditions/neck-pain',
-  getParentRoute: () => rootRouteImport,
+const ConditionsRegionRoute = ConditionsRegionRouteImport.update({
+  id: '/$region',
+  path: '/$region',
+  getParentRoute: () => ConditionsRoute,
+} as any)
+const ConditionsNeckPainRoute = ConditionsNeckPainRouteImport.update({
+  id: '/neck-pain',
+  path: '/neck-pain',
+  getParentRoute: () => ConditionsRoute,
 } as any)
 const GuidesSlugRoute = GuidesSlugRouteImport.update({
   id: '/guides/$slug',
@@ -87,28 +93,30 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/checker': typeof CheckerRoute
-  '/conditions': typeof ConditionsRoute
+  '/conditions': typeof ConditionsRouteWithChildren
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/learning': typeof LearningRoute
   '/movement': typeof MovementRoute
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
-  '/connditions/neck-pain': typeof ConnditionsNeckPainRoute
+  '/conditions/$region': typeof ConditionsRegionRoute
+  '/conditions/neck-pain': typeof ConditionsNeckPainRoute
   '/guides/$slug': typeof GuidesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/checker': typeof CheckerRoute
-  '/conditions': typeof ConditionsRoute
+  '/conditions': typeof ConditionsRouteWithChildren
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/learning': typeof LearningRoute
   '/movement': typeof MovementRoute
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
-  '/connditions/neck-pain': typeof ConnditionsNeckPainRoute
+  '/conditions/$region': typeof ConditionsRegionRoute
+  '/conditions/neck-pain': typeof ConditionsNeckPainRoute
   '/guides/$slug': typeof GuidesSlugRoute
 }
 export interface FileRoutesById {
@@ -116,14 +124,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/checker': typeof CheckerRoute
-  '/conditions': typeof ConditionsRoute
+  '/conditions': typeof ConditionsRouteWithChildren
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/learning': typeof LearningRoute
   '/movement': typeof MovementRoute
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
-  '/connditions/neck-pain': typeof ConnditionsNeckPainRoute
+  '/conditions/$region': typeof ConditionsRegionRoute
+  '/conditions/neck-pain': typeof ConditionsNeckPainRoute
   '/guides/$slug': typeof GuidesSlugRoute
 }
 export interface FileRouteTypes {
@@ -139,7 +148,8 @@ export interface FileRouteTypes {
     | '/movement'
     | '/posture'
     | '/workout'
-    | '/connditions/neck-pain'
+    | '/conditions/$region'
+    | '/conditions/neck-pain'
     | '/guides/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -153,7 +163,8 @@ export interface FileRouteTypes {
     | '/movement'
     | '/posture'
     | '/workout'
-    | '/connditions/neck-pain'
+    | '/conditions/$region'
+    | '/conditions/neck-pain'
     | '/guides/$slug'
   id:
     | '__root__'
@@ -167,7 +178,8 @@ export interface FileRouteTypes {
     | '/movement'
     | '/posture'
     | '/workout'
-    | '/connditions/neck-pain'
+    | '/conditions/$region'
+    | '/conditions/neck-pain'
     | '/guides/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -175,14 +187,13 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CheckerRoute: typeof CheckerRoute
-  ConditionsRoute: typeof ConditionsRoute
+  ConditionsRoute: typeof ConditionsRouteWithChildren
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   LearningRoute: typeof LearningRoute
   MovementRoute: typeof MovementRoute
   PostureRoute: typeof PostureRoute
   WorkoutRoute: typeof WorkoutRoute
-  ConnditionsNeckPainRoute: typeof ConnditionsNeckPainRoute
   GuidesSlugRoute: typeof GuidesSlugRoute
 }
 
@@ -258,12 +269,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/connditions/neck-pain': {
-      id: '/connditions/neck-pain'
-      path: '/connditions/neck-pain'
-      fullPath: '/connditions/neck-pain'
-      preLoaderRoute: typeof ConnditionsNeckPainRouteImport
-      parentRoute: typeof rootRouteImport
+    '/conditions/$region': {
+      id: '/conditions/$region'
+      path: '/$region'
+      fullPath: '/conditions/$region'
+      preLoaderRoute: typeof ConditionsRegionRouteImport
+      parentRoute: typeof ConditionsRoute
+    }
+    '/conditions/neck-pain': {
+      id: '/conditions/neck-pain'
+      path: '/neck-pain'
+      fullPath: '/conditions/neck-pain'
+      preLoaderRoute: typeof ConditionsNeckPainRouteImport
+      parentRoute: typeof ConditionsRoute
     }
     '/guides/$slug': {
       id: '/guides/$slug'
@@ -275,18 +293,31 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ConditionsRouteChildren {
+  ConditionsRegionRoute: typeof ConditionsRegionRoute
+  ConditionsNeckPainRoute: typeof ConditionsNeckPainRoute
+}
+
+const ConditionsRouteChildren: ConditionsRouteChildren = {
+  ConditionsRegionRoute: ConditionsRegionRoute,
+  ConditionsNeckPainRoute: ConditionsNeckPainRoute,
+}
+
+const ConditionsRouteWithChildren = ConditionsRoute._addFileChildren(
+  ConditionsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CheckerRoute: CheckerRoute,
-  ConditionsRoute: ConditionsRoute,
+  ConditionsRoute: ConditionsRouteWithChildren,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   LearningRoute: LearningRoute,
   MovementRoute: MovementRoute,
   PostureRoute: PostureRoute,
   WorkoutRoute: WorkoutRoute,
-  ConnditionsNeckPainRoute: ConnditionsNeckPainRoute,
   GuidesSlugRoute: GuidesSlugRoute,
 }
 export const routeTree = rootRouteImport

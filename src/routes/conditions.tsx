@@ -120,58 +120,6 @@ function ConditionsPage() {
   ))}
 </section>
         
-        {selectedRegion && filteredRegions.some(
-          (region) => region.name === selectedRegion
-        ) && (
-          <section
-            className="scroll-mt-24 space-y-5 rounded-3xl border border-border bg-card p-5 sm:p-8"
-            aria-live="polite"
-          >
-            {filteredRegions
-              .filter((region) => region.name === selectedRegion)
-              .map((region) => (
-                <div key={region.name} className="space-y-5">
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-teal-700">
-                      Selected body region
-                    </p>
-                    <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
-                      {region.name}
-                    </h2>
-                    <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-                      {region.description}
-                    </p>
-                  </div>
-
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {region.conditions.map((condition) => (
-                      <div
-                        key={condition}
-                        className="flex items-center justify-between gap-3 rounded-xl border border-border p-4"
-                      >
-                        <span className="text-sm font-medium">{condition}</span>
-
-                        {condition === "Neck pain and cervical strain" ? (
-                          <Link
-                            to="/conditions/neck-pain"
-                            className="shrink-0 text-sm font-semibold text-teal-700 hover:underline"
-                          >
-                            Read guide →
-                          </Link>
-                        ) : (
-                          <span className="shrink-0 text-xs text-muted-foreground">
-                            Guide coming soon
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-          </section>
-        )}
-
-
         {filteredRegions.length === 0 && (
           <div className="rounded-2xl border border-dashed border-border px-6 py-12 text-center">
             <h3 className="text-lg font-bold">No matching conditions found</h3>
