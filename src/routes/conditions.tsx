@@ -88,55 +88,38 @@ function ConditionsPage() {
         </section>
 
        
-        <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {filteredRegions.map((region, index) => {
-            const isSelected = selectedRegion === region.name;
+      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+  {filteredRegions.map((region) => (
+    <Link
+      key={region.name}
+      to="/conditions/$region"
+      params={{ region: slugifyRegionName(region.name) }}
+      className="group flex min-h-52 flex-col rounded-2xl border border-border bg-card p-5 text-left transition duration-200 hover:-translate-y-1 hover:border-teal-600/50 hover:shadow-lg"
+    >
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-600/10 text-2xl text-teal-700">
+        {region.icon}
+      </div>
 
-            return (
-              <button
-                key={region.name}
-                type="button"
-                onClick={() =>
-                  setSelectedRegion(isSelected ? null : region.name)
-                }
-                aria-expanded={isSelected}
-                className={`group flex min-h-52 flex-col rounded-2xl border p-5 text-left transition duration-200 hover:-translate-y-1 hover:shadow-lg ${
-                  isSelected
-                    ? "border-teal-600 bg-teal-600/5 shadow-md"
-                    : "border-border bg-card hover:border-teal-600/50"
-                }`}
-              >
-                <div className="flex w-full items-start justify-between gap-3">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-600/10 text-2xl text-teal-700">
-                    {region.icon}
-                  </span>
+      <div className="mt-5 flex-1">
+        <h3 className="text-lg font-bold group-hover:text-teal-700">
+          {region.name}
+        </h3>
 
-                  <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+          {region.description}
+        </p>
+      </div>
 
-                <div className="mt-5 flex-1">
-                  <h3 className="text-lg font-bold">{region.name}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    {region.description}
-                  </p>
-                </div>
-
-                <div className="mt-5 flex w-full items-center justify-between border-t border-border pt-4">
-                  <span className="text-xs font-medium text-muted-foreground">
-                    {region.conditions.length} conditions
-                  </span>
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-teal-700">
-                    {isSelected ? "Close region" : "Explore region"}
-                    <span aria-hidden="true">{isSelected ? "−" : "→"}</span>
-                  </span>
-                </div>
-              </button>
-            );
-          })}
-        </section>
-
+      <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
+        <span className="text-sm font-semibold text-teal-700">
+          Explore region
+        </span>
+        <span className="text-teal-700" aria-hidden="true">→</span>
+      </div>
+    </Link>
+  ))}
+</section>
+        
         {selectedRegion && filteredRegions.some(
           (region) => region.name === selectedRegion
         ) && (
