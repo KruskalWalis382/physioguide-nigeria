@@ -140,6 +140,7 @@ export const Route = createFileRoute("/conditions")({
 
 function ConditionsPage() {
   const [search, setSearch] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
 
   const filteredRegions = regions
     .map((region) => ({
@@ -219,49 +220,107 @@ function ConditionsPage() {
           </p>
         </section>
 
-        <section className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          {filteredRegions.map((region, index) => (
-            <article
-              key={region.name}
-              className="group flex flex-col rounded-2xl border border-border bg-card p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-teal-600/50 hover:shadow-lg"
-            >
-              <div className="mb-4 flex items-start justify-between gap-3">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-600/10 text-2xl text-teal-700">
-                  {region.icon}
-                </span>
-                <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </div>
+       
+        <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {filteredRegions.map((region, index) => {
+            const isSelected = selectedRegion === region.name;
 
-              <h3 className="text-xl font-bold">{region.name}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                {region.description}
-              </p>
+            return (
+              <button
+                key={region.name}
+                type="button"
+                onClick={() =>
+                  setSelectedRegion(isSelected ? null : region.name)
+                }
+                aria-expanded={isSelected}
+                className={`group flex min-h-52 flex-col rounded-2xl border p-5 text-left transition duration-200 hover:-translate-y-1 hover:shadow-lg ${
+                  isSelected
+                    ? "border-teal-600 bg-teal-600/5 shadow-md"
+                    : "border-border bg-card hover:border-teal-600/50"
+                }`}
+              >
+                <div className="flex w-full items-start justify-between gap-3">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-600/10 text-2xl text-teal-700">
+                    {region.icon}
+                  </span>
 
-              <div className="my-5 h-px bg-border" />
+                  <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
 
-              <h4 className="mb-3 text-sm font-bold uppercase tracking-wide">
-                Conditions in this region
-              </h4>
+                <div className="mt-5 flex-1">
+                  <h3 className="text-lg font-bold">{region.name}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {region.description}
+                  </p>
+                </div>
 
-              <ul className="space-y-3">
-                {region.conditions.map((condition) => (
-                  <li key={condition} className="flex gap-2 text-sm leading-5">
-                    <span className="mt-0.5 text-teal-600">•</span>
-                    <span>{condition}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-auto pt-5">
-                <p className="rounded-lg bg-muted/60 px-3 py-2 text-xs leading-5 text-muted-foreground">
-                  Detailed condition guides are being developed and reviewed.
-                </p>
-              </div>
-            </article>
-          ))}
+                <div className="mt-5 flex w-full items-center justify-between border-t border-border pt-4">
+                  <span className="text-xs font-medium text-muted-foreground">
+                    {region.conditions.length} conditions
+                  </span>
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-teal-700">
+                    {isSelected ? "Close region" : "Explore region"}
+                    <span aria-hidden="true">{isSelected ? "−" : "→"}</span>
+                  </span>
+                </div>
+              </button>
+            );
+          })}
         </section>
+
+        {selectedRegion && filteredRegions.some(
+          (region) => region.name === selectedRegion
+        ) && (
+          <section
+            className="scroll-mt-24 space-y-5 rounded-3xl border border-border bg-card p-5 sm:p-8"
+            aria-live="polite"
+          >
+            {filteredRegions
+              .filter((region) => region.name === selectedRegion)
+              .map((region) => (
+                <div key={region.name} className="space-y-5">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-widest text-teal-700">
+                      Selected body region
+                    </p>
+                    <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
+                      {region.name}
+                    </h2>
+                    <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
+                      {region.description}
+                    </p>
+                  </div>
+
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {region.conditions.map((condition) => (
+                      <div
+                        key={condition}
+                        className="flex items-center justify-between gap-3 rounded-xl border border-border p-4"
+                      >
+                        <span className="text-sm font-medium">{condition}</span>
+
+                        {condition === "Neck pain and cervical strain" ? (
+                          <Link
+                            to="/conditions/neck-pain"
+                            className="shrink-0 text-sm font-semibold text-teal-700 hover:underline"
+                          >
+                            Read guide →
+                          </Link>
+                        ) : (
+                          <span className="shrink-0 text-xs text-muted-foreground">
+                            Guide coming soon
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+          </section>
+        )}
+
 
         {filteredRegions.length === 0 && (
           <div className="rounded-2xl border border-dashed border-border px-6 py-12 text-center">
