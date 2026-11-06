@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, Disclaimer } from "@/components/SiteLayout";
 
-export const Route = createFileRoute("/connditions/neck-pain")({
+export const Route = createFileRoute("/conditions/neck-pain")({
   head: () => ({ meta: [
     { title: "Neck Pain Clinical Learning — PhysioGuide Nigeria" },
     { name: "description", content: "Educational anatomy, assessment and rehabilitation information for neck pain." },
