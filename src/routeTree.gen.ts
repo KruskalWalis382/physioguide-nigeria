@@ -19,6 +19,7 @@ import { Route as LearningRouteImport } from './routes/learning'
 import { Route as MovementRouteImport } from './routes/movement'
 import { Route as PostureRouteImport } from './routes/posture'
 import { Route as WorkoutRouteImport } from './routes/workout'
+import { Route as ConditionsIndexRouteImport } from './routes/conditions.index'
 import { Route as ConditionsRegionRouteImport } from './routes/conditions.$region'
 import { Route as ConditionsNeckPainRouteImport } from './routes/conditions.neck-pain'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
@@ -73,6 +74,11 @@ const WorkoutRoute = WorkoutRouteImport.update({
   path: '/workout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConditionsIndexRoute = ConditionsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ConditionsRoute,
+} as any)
 const ConditionsRegionRoute = ConditionsRegionRouteImport.update({
   id: '/$region',
   path: '/$region',
@@ -103,12 +109,12 @@ export interface FileRoutesByFullPath {
   '/conditions/$region': typeof ConditionsRegionRoute
   '/conditions/neck-pain': typeof ConditionsNeckPainRoute
   '/guides/$slug': typeof GuidesSlugRoute
+  '/conditions/': typeof ConditionsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/checker': typeof CheckerRoute
-  '/conditions': typeof ConditionsRouteWithChildren
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/learning': typeof LearningRoute
@@ -118,6 +124,7 @@ export interface FileRoutesByTo {
   '/conditions/$region': typeof ConditionsRegionRoute
   '/conditions/neck-pain': typeof ConditionsNeckPainRoute
   '/guides/$slug': typeof GuidesSlugRoute
+  '/conditions': typeof ConditionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -134,6 +141,7 @@ export interface FileRoutesById {
   '/conditions/$region': typeof ConditionsRegionRoute
   '/conditions/neck-pain': typeof ConditionsNeckPainRoute
   '/guides/$slug': typeof GuidesSlugRoute
+  '/conditions/': typeof ConditionsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,12 +159,12 @@ export interface FileRouteTypes {
     | '/conditions/$region'
     | '/conditions/neck-pain'
     | '/guides/$slug'
+    | '/conditions/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/checker'
-    | '/conditions'
     | '/contact'
     | '/faq'
     | '/learning'
@@ -166,6 +174,7 @@ export interface FileRouteTypes {
     | '/conditions/$region'
     | '/conditions/neck-pain'
     | '/guides/$slug'
+    | '/conditions'
   id:
     | '__root__'
     | '/'
@@ -181,6 +190,7 @@ export interface FileRouteTypes {
     | '/conditions/$region'
     | '/conditions/neck-pain'
     | '/guides/$slug'
+    | '/conditions/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -269,6 +279,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/conditions/': {
+      id: '/conditions/'
+      path: '/'
+      fullPath: '/conditions/'
+      preLoaderRoute: typeof ConditionsIndexRouteImport
+      parentRoute: typeof ConditionsRoute
+    }
     '/conditions/$region': {
       id: '/conditions/$region'
       path: '/$region'
@@ -296,11 +313,13 @@ declare module '@tanstack/react-router' {
 interface ConditionsRouteChildren {
   ConditionsRegionRoute: typeof ConditionsRegionRoute
   ConditionsNeckPainRoute: typeof ConditionsNeckPainRoute
+  ConditionsIndexRoute: typeof ConditionsIndexRoute
 }
 
 const ConditionsRouteChildren: ConditionsRouteChildren = {
   ConditionsRegionRoute: ConditionsRegionRoute,
   ConditionsNeckPainRoute: ConditionsNeckPainRoute,
+  ConditionsIndexRoute: ConditionsIndexRoute,
 }
 
 const ConditionsRouteWithChildren = ConditionsRoute._addFileChildren(
