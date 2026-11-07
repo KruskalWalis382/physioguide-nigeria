@@ -3,6 +3,14 @@ import { SiteLayout, Disclaimer } from "@/components/SiteLayout";
 import { regions } from "@/lib/conditions";
 
 export const Route = createFileRoute("/conditions/$region")({
+  head: () => ({ meta: [
+    { title: "Conditions by Body Region — PhysioGuide Nigeria" },
+    { name: "description", content: "Explore conditions within a body region and open their educational guides." },
+    { property: "og:title", content: "Conditions by Body Region — PhysioGuide Nigeria" },
+    { property: "og:description", content: "Explore conditions within a body region and open their educational guides." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: RegionPage,
 });
 
