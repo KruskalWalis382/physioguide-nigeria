@@ -65,28 +65,34 @@ function RegionPage() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
-            {region.conditions.map((condition) => (
-              <div
-                key={condition}
-                className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card p-5"
-              >
-                <span className="font-medium">{condition}</span>
+            {region.conditions.map((condition) => {
+              const guideLink =
+                region.name === "Neck and Cervical Spine"
+                  ? neckGuideLinks.find((link) => link.title === condition)
+                  : undefined;
 
-                {condition === "Neck pain and cervical strain" &&
-                region.name === "Neck and Cervical Spine" ? (
-                  <Link
-                    to="/conditions/neck-pain"
-                    className="shrink-0 text-sm font-semibold text-teal-700 hover:underline"
-                  >
-                    Read guide →
-                  </Link>
-                ) : (
-                  <span className="shrink-0 text-xs text-muted-foreground">
-                    Guide coming soon
-                  </span>
-                )}
-              </div>
-            ))}
+              return (
+                <div
+                  key={condition}
+                  className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card p-5"
+                >
+                  <span className="font-medium">{condition}</span>
+
+                  {guideLink ? (
+                    <Link
+                      to={guideLink.to}
+                      className="shrink-0 text-sm font-semibold text-teal-700 hover:underline"
+                    >
+                      Read guide →
+                    </Link>
+                  ) : (
+                    <span className="shrink-0 text-xs text-muted-foreground">
+                      Guide coming soon
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </section>
 
