@@ -10,6 +10,6 @@
 - [ ] Redesign remaining pages one at a time (next page waits on user choice).
 
 ## Neck and Cervical Spine library extension
-- [ ] Research and reference four clinical guides without changing the existing neck strain guide.
-- [ ] Add four exact routes and connect the region links using a shared clinical guide presentation.
-- [ ] Verify routing, references, existing tests and phone/desktop reading; do not deploy.
+- [x] Research and reference four clinical guides without changing the existing neck strain guide.
+- [x] Add four exact routes and connect the region links using a shared clinical guide presentation.
+- [x] Verify routing, references, existing tests and phone/desktop reading; do not deploy.
