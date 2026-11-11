@@ -21,7 +21,11 @@ import { Route as PostureRouteImport } from './routes/posture'
 import { Route as WorkoutRouteImport } from './routes/workout'
 import { Route as ConditionsIndexRouteImport } from './routes/conditions.index'
 import { Route as ConditionsRegionRouteImport } from './routes/conditions.$region'
+import { Route as ConditionsCervicalRadiculopathyRouteImport } from './routes/conditions.cervical-radiculopathy'
+import { Route as ConditionsCervicalSpondylosisRouteImport } from './routes/conditions.cervical-spondylosis'
+import { Route as ConditionsCervicogenicHeadacheRouteImport } from './routes/conditions.cervicogenic-headache'
 import { Route as ConditionsNeckPainRouteImport } from './routes/conditions.neck-pain'
+import { Route as ConditionsWhiplashAssociatedDisordersRouteImport } from './routes/conditions.whiplash-associated-disorders'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -84,11 +88,35 @@ const ConditionsRegionRoute = ConditionsRegionRouteImport.update({
   path: '/$region',
   getParentRoute: () => ConditionsRoute,
 } as any)
+const ConditionsCervicalRadiculopathyRoute =
+  ConditionsCervicalRadiculopathyRouteImport.update({
+    id: '/cervical-radiculopathy',
+    path: '/cervical-radiculopathy',
+    getParentRoute: () => ConditionsRoute,
+  } as any)
+const ConditionsCervicalSpondylosisRoute =
+  ConditionsCervicalSpondylosisRouteImport.update({
+    id: '/cervical-spondylosis',
+    path: '/cervical-spondylosis',
+    getParentRoute: () => ConditionsRoute,
+  } as any)
+const ConditionsCervicogenicHeadacheRoute =
+  ConditionsCervicogenicHeadacheRouteImport.update({
+    id: '/cervicogenic-headache',
+    path: '/cervicogenic-headache',
+    getParentRoute: () => ConditionsRoute,
+  } as any)
 const ConditionsNeckPainRoute = ConditionsNeckPainRouteImport.update({
   id: '/neck-pain',
   path: '/neck-pain',
   getParentRoute: () => ConditionsRoute,
 } as any)
+const ConditionsWhiplashAssociatedDisordersRoute =
+  ConditionsWhiplashAssociatedDisordersRouteImport.update({
+    id: '/whiplash-associated-disorders',
+    path: '/whiplash-associated-disorders',
+    getParentRoute: () => ConditionsRoute,
+  } as any)
 const GuidesSlugRoute = GuidesSlugRouteImport.update({
   id: '/guides/$slug',
   path: '/guides/$slug',
@@ -107,7 +135,11 @@ export interface FileRoutesByFullPath {
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
   '/conditions/$region': typeof ConditionsRegionRoute
+  '/conditions/cervical-radiculopathy': typeof ConditionsCervicalRadiculopathyRoute
+  '/conditions/cervical-spondylosis': typeof ConditionsCervicalSpondylosisRoute
+  '/conditions/cervicogenic-headache': typeof ConditionsCervicogenicHeadacheRoute
   '/conditions/neck-pain': typeof ConditionsNeckPainRoute
+  '/conditions/whiplash-associated-disorders': typeof ConditionsWhiplashAssociatedDisordersRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/conditions/': typeof ConditionsIndexRoute
 }
@@ -122,7 +154,11 @@ export interface FileRoutesByTo {
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
   '/conditions/$region': typeof ConditionsRegionRoute
+  '/conditions/cervical-radiculopathy': typeof ConditionsCervicalRadiculopathyRoute
+  '/conditions/cervical-spondylosis': typeof ConditionsCervicalSpondylosisRoute
+  '/conditions/cervicogenic-headache': typeof ConditionsCervicogenicHeadacheRoute
   '/conditions/neck-pain': typeof ConditionsNeckPainRoute
+  '/conditions/whiplash-associated-disorders': typeof ConditionsWhiplashAssociatedDisordersRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/conditions': typeof ConditionsIndexRoute
 }
@@ -139,7 +175,11 @@ export interface FileRoutesById {
   '/posture': typeof PostureRoute
   '/workout': typeof WorkoutRoute
   '/conditions/$region': typeof ConditionsRegionRoute
+  '/conditions/cervical-radiculopathy': typeof ConditionsCervicalRadiculopathyRoute
+  '/conditions/cervical-spondylosis': typeof ConditionsCervicalSpondylosisRoute
+  '/conditions/cervicogenic-headache': typeof ConditionsCervicogenicHeadacheRoute
   '/conditions/neck-pain': typeof ConditionsNeckPainRoute
+  '/conditions/whiplash-associated-disorders': typeof ConditionsWhiplashAssociatedDisordersRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/conditions/': typeof ConditionsIndexRoute
 }
@@ -157,7 +197,11 @@ export interface FileRouteTypes {
     | '/posture'
     | '/workout'
     | '/conditions/$region'
+    | '/conditions/cervical-radiculopathy'
+    | '/conditions/cervical-spondylosis'
+    | '/conditions/cervicogenic-headache'
     | '/conditions/neck-pain'
+    | '/conditions/whiplash-associated-disorders'
     | '/guides/$slug'
     | '/conditions/'
   fileRoutesByTo: FileRoutesByTo
@@ -172,7 +216,11 @@ export interface FileRouteTypes {
     | '/posture'
     | '/workout'
     | '/conditions/$region'
+    | '/conditions/cervical-radiculopathy'
+    | '/conditions/cervical-spondylosis'
+    | '/conditions/cervicogenic-headache'
     | '/conditions/neck-pain'
+    | '/conditions/whiplash-associated-disorders'
     | '/guides/$slug'
     | '/conditions'
   id:
@@ -188,7 +236,11 @@ export interface FileRouteTypes {
     | '/posture'
     | '/workout'
     | '/conditions/$region'
+    | '/conditions/cervical-radiculopathy'
+    | '/conditions/cervical-spondylosis'
+    | '/conditions/cervicogenic-headache'
     | '/conditions/neck-pain'
+    | '/conditions/whiplash-associated-disorders'
     | '/guides/$slug'
     | '/conditions/'
   fileRoutesById: FileRoutesById
@@ -293,11 +345,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConditionsRegionRouteImport
       parentRoute: typeof ConditionsRoute
     }
+    '/conditions/cervical-radiculopathy': {
+      id: '/conditions/cervical-radiculopathy'
+      path: '/cervical-radiculopathy'
+      fullPath: '/conditions/cervical-radiculopathy'
+      preLoaderRoute: typeof ConditionsCervicalRadiculopathyRouteImport
+      parentRoute: typeof ConditionsRoute
+    }
+    '/conditions/cervical-spondylosis': {
+      id: '/conditions/cervical-spondylosis'
+      path: '/cervical-spondylosis'
+      fullPath: '/conditions/cervical-spondylosis'
+      preLoaderRoute: typeof ConditionsCervicalSpondylosisRouteImport
+      parentRoute: typeof ConditionsRoute
+    }
+    '/conditions/cervicogenic-headache': {
+      id: '/conditions/cervicogenic-headache'
+      path: '/cervicogenic-headache'
+      fullPath: '/conditions/cervicogenic-headache'
+      preLoaderRoute: typeof ConditionsCervicogenicHeadacheRouteImport
+      parentRoute: typeof ConditionsRoute
+    }
     '/conditions/neck-pain': {
       id: '/conditions/neck-pain'
       path: '/neck-pain'
       fullPath: '/conditions/neck-pain'
       preLoaderRoute: typeof ConditionsNeckPainRouteImport
+      parentRoute: typeof ConditionsRoute
+    }
+    '/conditions/whiplash-associated-disorders': {
+      id: '/conditions/whiplash-associated-disorders'
+      path: '/whiplash-associated-disorders'
+      fullPath: '/conditions/whiplash-associated-disorders'
+      preLoaderRoute: typeof ConditionsWhiplashAssociatedDisordersRouteImport
       parentRoute: typeof ConditionsRoute
     }
     '/guides/$slug': {
@@ -312,13 +392,22 @@ declare module '@tanstack/react-router' {
 
 interface ConditionsRouteChildren {
   ConditionsRegionRoute: typeof ConditionsRegionRoute
+  ConditionsCervicalRadiculopathyRoute: typeof ConditionsCervicalRadiculopathyRoute
+  ConditionsCervicalSpondylosisRoute: typeof ConditionsCervicalSpondylosisRoute
+  ConditionsCervicogenicHeadacheRoute: typeof ConditionsCervicogenicHeadacheRoute
   ConditionsNeckPainRoute: typeof ConditionsNeckPainRoute
+  ConditionsWhiplashAssociatedDisordersRoute: typeof ConditionsWhiplashAssociatedDisordersRoute
   ConditionsIndexRoute: typeof ConditionsIndexRoute
 }
 
 const ConditionsRouteChildren: ConditionsRouteChildren = {
   ConditionsRegionRoute: ConditionsRegionRoute,
+  ConditionsCervicalRadiculopathyRoute: ConditionsCervicalRadiculopathyRoute,
+  ConditionsCervicalSpondylosisRoute: ConditionsCervicalSpondylosisRoute,
+  ConditionsCervicogenicHeadacheRoute: ConditionsCervicogenicHeadacheRoute,
   ConditionsNeckPainRoute: ConditionsNeckPainRoute,
+  ConditionsWhiplashAssociatedDisordersRoute:
+    ConditionsWhiplashAssociatedDisordersRoute,
   ConditionsIndexRoute: ConditionsIndexRoute,
 }
 

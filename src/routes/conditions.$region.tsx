@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout, Disclaimer } from "@/components/SiteLayout";
 import { regions } from "@/lib/conditions";
+import { neckGuideLinks } from "@/lib/clinical-guide";
 
 export const Route = createFileRoute("/conditions/$region")({
   head: () => ({ meta: [
